@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Song;
 use App\Services\SongService;
 use Illuminate\Http\Request;
 
@@ -35,29 +36,36 @@ class SongController extends Controller
 
     public function show($id)
     {
-        $datasong = $this->songService->findById($id);
+        $datasongs = $this->songService->findById($id);
 
-        return response()->json($datasong['songs'], $datasong['statusCode']);
+        return response()->json($datasongs['songs'], $datasongs['statusCode']);
     }
 
     public function store(Request $request)
     {
-        $datasong = $this->songService->create($request->all());
+        $datasongs = $this->songService->create($request->all());
 
-        return response()->json($datasong['songs'], $datasong['statusCode']);
+        return response()->json($datasongs['songs'], $datasongs['statusCode']);
     }
 
     public function update(Request $request, $id)
     {
-        $datasong = $this->songService->update($request->all(), $id);
+        $datasongs = $this->songService->update($request->all(), $id);
 
-        return response()->json($datasong['songs'], $datasong['statusCode']);
+        return response()->json($datasongs['songs'], $datasongs['statusCode']);
     }
 
     public function destroy($id)
     {
-        $datasong = $this->songService->destroy($id);
+        $datasongs = $this->songService->destroy($id);
 
-        return response()->json($datasong['message'], $datasong['statusCode']);
+        return response()->json($datasongs['message'], $datasongs['statusCode']);
     }
+
+    public function songsOfSinger($id_singer)
+    {
+        $songs = Song::all()->where('singer_id','=',$id_singer);
+        return response()->json($songs, 200);
+    }
+
 }

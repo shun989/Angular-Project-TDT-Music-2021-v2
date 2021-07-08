@@ -26,6 +26,8 @@ Route::post('/songs', [SongController::class,'store'])->name('songs.store');
 Route::put('/songs/{songId}', [SongController::class,'update'])->name('songs.update');
 Route::delete('/songs/{songId}', [SongController::class,'destroy'])->name('songs.destroy');
 Route::get('/latest/songs/',[SongController::class,'newSong'])->name('songs.latest');
+Route::get('/{id_singer}/songs', [SongController::class,'songsOfSinger'])->name('songs.singer');
+
 
 Route::get('/users', [UserController::class,'index'])->name('users.all');
 Route::get('/users/{userId}', [UserController::class,'show'])->name('users.show');
