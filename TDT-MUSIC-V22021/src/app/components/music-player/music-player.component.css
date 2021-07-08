@@ -1,0 +1,30 @@
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  min-height: 100vh;
+  width: 100%;
+}
+
+header,
+footer {
+  height: 50px;
+  position: relative;
+  left: 30px;
+}
+
+.fixed-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+
+}
+
+main {
+  flex: 1;
+}
+
