@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\SingerController;
 use App\Http\Controllers\SongController;
 use App\Http\Controllers\UserController;
@@ -19,9 +18,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/refresh', [AuthController::class, 'refresh']);
+    Route::get('/user-profile', [AuthController::class, 'userProfile']);
+    Route::post('/change-password', [AuthController::class, 'changePassword']);
 });
+
 Route::get('/songs', [SongController::class,'index'])->name('songs.all');
 Route::get('/songs/{songId}', [SongController::class,'show'])->name('songs.show');
 Route::post('/songs', [SongController::class,'store'])->name('songs.store');
@@ -33,15 +42,10 @@ Route::get('/{id_singer}/songs', [SongController::class,'songsOfSinger'])->name(
 
 Route::get('/users', [UserController::class,'index'])->name('users.all');
 Route::get('/users/{userId}', [UserController::class,'show'])->name('users.show');
-Route::post('/users', [UserController::class,'store'])->name('users.store');
-Route::put('/users/{userId}', [UserController::class,'update'])->name('users.update');
-Route::delete('/users/{userId}', [UserController::class,'destroy'])->name('users.destroy');
+
 
 Route::get('/singers', [SingerController::class,'index'])->name('singers.all');
 Route::get('/singers/{singerId}', [SingerController::class,'show'])->name('singers.show');
 Route::post('/singers', [SingerController::class,'store'])->name('singers.store');
 Route::put('/singers/{singerId}', [SingerController::class,'update'])->name('singers.update');
 Route::delete('/singers/{singerId}', [SingerController::class,'destroy'])->name('singers.destroy');
-
-Route::post('auth/login',[LoginController::class,'login'])->name('auth.login');
-Route::post('auth/register',[RegisterController::class,'createUser'])->name('auth.register');

@@ -24,13 +24,7 @@ class SongController extends Controller
 
     public function newSong()
     {
-        $songs = $this->songService->getAll();
-        for ($i = 0; $i < count($songs)-1; $i++) {
-            $temp = $songs[$i];
-            $songs[$i] =$songs[count($songs)-1-$i];
-            $songs[count($songs)-1-$i] = $temp;
-        }
-
+        $songs = Song::all()->sortByDesc('id');
         return response()->json($songs, 200);
     }
 
