@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SingerController;
 use App\Http\Controllers\SongController;
 use App\Http\Controllers\UserController;
@@ -40,3 +42,6 @@ Route::get('/singers/{singerId}', [SingerController::class,'show'])->name('singe
 Route::post('/singers', [SingerController::class,'store'])->name('singers.store');
 Route::put('/singers/{singerId}', [SingerController::class,'update'])->name('singers.update');
 Route::delete('/singers/{singerId}', [SingerController::class,'destroy'])->name('singers.destroy');
+
+Route::post('auth/login',[LoginController::class,'login'])->name('auth.login');
+Route::post('auth/register',[RegisterController::class,'createUser'])->name('auth.register');
