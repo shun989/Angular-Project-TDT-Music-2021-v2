@@ -1,0 +1,106 @@
+
+<div class="main">
+  <h3 class="text-center">List songs</h3>
+  <div class="d-flex">
+    <button (click)="clickAddSong()" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success mx-3">
+      Add Song
+    </button>
+  </div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">image</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">musician</th>
+      <th scope="col">singer</th>
+      <th scope="col">user</th>
+      <th scope="col">genre</th>
+      <th scope="col">album</th>
+      <th scope="col">Play</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of songData; let i = index ">
+      <th scope="row">{{i + 1}}</th>
+      <td><img style="width: 50px" src="{{item.image}}" alt=""></td>
+      <td>{{item.song_name}}</td>
+      <td>{{item.description}}</td>
+      <td>{{item.musician}}</td>
+      <td>{{item.singer_id}}</td>
+      <td>{{item.user_id}}</td>
+      <td>{{item.genre}}</td>
+      <td>{{item.album}}</td>
+      <td>
+        <audio controls loop>
+          <source src="{{item.filename}}">
+        </audio>
+      </td>
+      <td>
+        <button (click)="onUpdate(item)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info">
+          Edit
+        </button>
+        <button class="btn btn-danger mx-2" (click)="deleteSong(item)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Song Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup] = "formValue" >
+            <div class="mb-3">
+              <label  class="form-label">Image</label>
+              <input type="text" class="form-control" formControlName="image">
+            </div>
+            <div class="mb-3">
+              <label  class="form-label">Song Name</label>
+              <input type="text" class="form-control" formControlName="song_name">
+            </div>
+            <div class="mb-3">
+              <label  class="form-label">Description</label>
+              <input type="text" class="form-control" formControlName="description">
+            </div>
+            <div class="mb-3">
+              <label  class="form-label">Musician</label>
+              <input type="text" class="form-control" formControlName="musician">
+            </div>
+            <div class="mb-3">
+              <label  class="form-label">File Song</label>
+              <input type="text" class="form-control" formControlName="filename">
+            </div>
+            <div class="mb-3" >
+              <label  class="form-label">Singer</label>
+              <input type="text" class="form-control" formControlName="singer_id">
+            </div>
+            <div class="mb-3">
+              <label  class="form-label">Poster</label>
+              <input type="text" class="form-control" formControlName="user_id">
+            </div>
+            <div class="mb-3">
+              <label  class="form-label">Genre</label>
+              <input type="text" class="form-control" formControlName="genre">
+            </div>
+            <div class="mb-3">
+              <label  class="form-label">Album</label>
+              <input type="text" class="form-control" formControlName="album">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button *ngIf="showAdd" type="button" class="btn btn-primary" (click) ="postSong()">Add</button>
+          <button *ngIf="showUpdate" type="button" class="btn btn-primary" (click) ="updateSongDetails()">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
