@@ -6,17 +6,35 @@ import { AppComponent } from './app.component';
 import { SongComponent } from './component/song/song.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import {NavbarComponent} from "./component/layout/navbar/navbar.component";
-import {MenuComponent} from "./component/layout/menu/menu.component";
-import {FooterComponent} from "./component/layout/footer/footer.component";
+import { HomeComponent } from './component/home/home.component';
+import { AlbumComponent } from './component/album/album.component';
+import { ArtistComponent } from './component/artist/artist.component';
+import { GenreComponent } from './component/genre/genre.component';
+import { TopTrackComponent } from './component/top-track/top-track.component';
+import { AuthComponent } from './component/auth/auth.component';
+import {LoadComponent} from "./layout/load/load.component";
+import {MenuComponent} from "./layout/menu/menu.component";
+import {FooterComponent} from "./layout/footer/footer.component";
+import { UserComponent } from './component/user/user.component';
+import { UserTrackListComponent } from './component/user-track-list/user-track-list.component';
+import { QueueComponent } from './component/queue/queue.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SongComponent,
-    NavbarComponent,
+    HomeComponent,
+    AlbumComponent,
+    ArtistComponent,
+    GenreComponent,
+    TopTrackComponent,
+    AuthComponent,
+    LoadComponent,
     MenuComponent,
-    FooterComponent
+    FooterComponent,
+    UserComponent,
+    UserTrackListComponent,
+    QueueComponent
   ],
   imports: [
     BrowserModule,
