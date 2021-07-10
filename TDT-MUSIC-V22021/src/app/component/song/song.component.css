@@ -1,0 +1,13 @@
+.main{
+  color: var(--font-page);
+  background-color: var(--page-all);
+  height: 1500px;
+}
+
+.main-show{
+  padding-top: 75px;
+}
+
+table{
+  color: var(--font-page);
+}

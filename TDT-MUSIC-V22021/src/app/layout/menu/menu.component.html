@@ -1,0 +1,109 @@
+
+ <div class="ms_sidemenu_wrapper">
+  <div class="ms_nav_close">
+    <i class="fa fa-angle-right" aria-hidden="true"></i>
+  </div>
+  <div class="ms_sidemenu_inner">
+    <div class="ms_logo_inner">
+      <div class="ms_logo">
+        <a routerLink="/"><img src="assets/images/logo.png" alt="" class="img-fluid"/></a>
+      </div>
+      <div class="ms_logo_open">
+        <a routerLink="/"><img src="assets/images/logo.png" alt="" class="img-fluid-1"/></a>
+        <span class="group-name">𝕿𝕯𝕿 𝕸𝖀𝕾𝕴𝕮</span>
+<!--        <span class="group-name">𝒯𝒟𝒯 𝑀𝒰𝒮𝐼𝒞</span>-->
+      </div>
+    </div>
+    <div class="ms_nav_wrapper " id="myDIV">
+      <ul>
+        <li><a routerLink="/" class="active" title="Discover">
+						<span class="nav_icon">
+							<span class="icon icon_discover"></span>
+						</span>
+          <span class="nav_text">
+							discover
+						</span>
+        </a>
+        </li>
+        <li><a class="chose-item" routerLink="./album" title="Albums">
+						<span class="nav_icon">
+							<span class="icon icon_albums"></span>
+						</span>
+          <span class="nav_text">
+							albums
+						</span>
+        </a>
+        </li>
+        <li><a class="chose-item" routerLink="./artist" title="Artists">
+						<span class="nav_icon">
+							<span class="icon icon_artists"></span>
+						</span>
+          <span class="nav_text">
+							artists
+						</span>
+        </a>
+        </li>
+        <li><a class="chose-item" routerLink="./genre" title="Genres">
+						<span class="nav_icon">
+							<span class="icon icon_genres"></span>
+						</span>
+          <span class="nav_text">
+							genres
+						</span>
+        </a>
+        </li>
+        <li><a class="chose-item" routerLink="./top-track" title="Top Tracks">
+						<span class="nav_icon">
+							<span class="icon icon_tracks"></span>
+						</span>
+          <span class="nav_text">
+							Top tracks
+						</span>
+        </a>
+        </li>
+        <li><a href="free_music.html" title="Top Listen">
+						<span class="nav_icon">
+							<span class="icon icon_music"></span>
+						</span>
+          <span class="nav_text">
+							Top listen
+						</span>
+        </a>
+        </li>
+      </ul>
+      <ul class="nav_playlist">
+        <li><a class="chose-item" href="feature_playlist.html" title="Featured Playlist">
+						<span class="nav_icon">
+							<span class="icon icon_fe_playlist"></span>
+						</span>
+          <span class="nav_text">
+							featured playlist
+						</span>
+        </a>
+        </li>
+        <li><a class="chose-item" href="add_playlist.html" title="Create Playlist">
+						<span class="nav_icon">
+							<span class="icon icon_c_playlist"></span>
+						</span>
+          <span class="nav_text">
+							create playlist
+						</span>
+        </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+ <script>
+   // Add active class to the current button (highlight it)
+   var header = document.getElementById("myDIV");
+   var btns = header.getElementsByClassName("chose-item");
+   for (var i = 0; i < btns.length; i++) {
+     btns[i].addEventListener("click", function() {
+       var current = document.getElementsByClassName("active");
+       current[0].className = current[0].className.replace(" active", "");
+       this.className += " active";
+     });
+   }
+ </script>
