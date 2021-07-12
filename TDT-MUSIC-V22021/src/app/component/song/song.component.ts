@@ -46,7 +46,7 @@ export class SongComponent implements OnInit {
     this.showUpdate = false;
   }
 
-  postSong() {
+  postSong():void {
     this.songModelObj.song_name = this.formValue.value.song_name;
     this.songModelObj.description = this.formValue.value.description;
     this.songModelObj.filename = this.formValue.value.filename;
