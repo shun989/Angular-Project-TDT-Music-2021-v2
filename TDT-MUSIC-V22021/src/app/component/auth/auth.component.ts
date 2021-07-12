@@ -10,7 +10,7 @@ import {AuthModel} from "./auth.model";
 })
 export class AuthComponent implements OnInit {
 
-  formValue !: FormGroup;
+  formRegister !: FormGroup;
   userModelObj: AuthModel = new AuthModel();
   userData !: any;
 
@@ -44,11 +44,11 @@ export class AuthComponent implements OnInit {
       {type: 'maxlength', message: 'password length.'},
     ],
   }
-  constructor(private formBuilder: FormBuilder,
+  constructor(private fb: FormBuilder,
               private api: AuthService) { }
 
   ngOnInit(): void {
-    this.formValue = this.formBuilder.group({
+    this.formRegister = this.fb.group({
       username: new FormControl ('', [Validators.required, Validators.minLength(4)]),
       password: new FormControl('', [Validators.required, Validators.minLength(6),Validators.maxLength(30)]),
       phone: new FormControl('', [Validators.required, Validators.pattern('(84|0[3|5|7|8|9])+([0-9]{8})')]),
@@ -60,26 +60,22 @@ export class AuthComponent implements OnInit {
     },{
       validators: this.passwordMatch.bind(this)
     })
-    this.getUserData();
   }
 
-  getUserData():void{
-    this.api.getAllUsers().subscribe(res => {
-      this.userData = res;
-    })
-  }
 
   postUser():void {
-    this.userModelObj.username = this.formValue.value.username;
-    this.userModelObj.password = this.formValue.value.password;
-    this.userModelObj.phone = this.formValue.value.phone;
+
+    this.userModelObj.username = this.formRegister.value.username;
+    this.userModelObj.password = this.formRegister.value.password;
+    // @ts-ignore
+    this.userModelObj.password_confirmation = this.formRegister.value.confirmpassword;
+    this.userModelObj.phone = this.formRegister.value.phone;
 
     this.api.postUser(this.userModelObj).subscribe(res =>{
         alert("Register Success.");
         let ref = document.getElementById('cancel')
         ref?.click();
-        this.formValue.reset();
-        this.getUserData();
+        this.formRegister.reset();
       },
       error => {
         alert("Something Went Wrong!");
@@ -95,18 +91,18 @@ export class AuthComponent implements OnInit {
   }
 
   get username(){
-    return this.formValue?.get('username')
+    return this.formRegister?.get('username')
   }
 
   get phone(){
-    return this.formValue?.get('phone')
+    return this.formRegister?.get('phone')
   }
 
   get password(){
-    return this.formValue?.get('password')
+    return this.formRegister?.get('password')
   }
   get confirmpassword(){
-    return this.formValue?.get('confirmpassword')
+    return this.formRegister?.get('confirmpassword')
   }
 }
 

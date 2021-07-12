@@ -14,7 +14,7 @@
           </div>
           <div class="ms_register_form">
             <h2>Register / Sign Up</h2>
-            <form *ngIf="formValue" [formGroup]="formValue">
+            <form *ngIf="formRegister" [formGroup]="formRegister">
               <div class="form-group">
                 <input type="text" placeholder="Enter Your Name" class="form-control" formControlName="username"
                        [ngClass]="username && username.invalid && (username.dirty || username.touched) ? 'is-invalid' : ''"/>

@@ -13,21 +13,6 @@ class UserController extends Controller
     {
         $this->userService = $userService;
     }
-
-    public function index()
-    {
-        $users = $this->userService->getAll();
-
-        return response()->json($users, 200);
-    }
-
-    public function show($id)
-    {
-        $datauser = $this->userService->findById($id);
-
-        return response()->json($datauser['users'], $datauser['statusCode']);
-    }
-
     public function store(Request $request)
     {
         $datauser = $this->userService->create($request->all());
@@ -40,12 +25,5 @@ class UserController extends Controller
         $datauser = $this->userService->update($request->all(), $id);
 
         return response()->json($datauser['users'], $datauser['statusCode']);
-    }
-
-    public function destroy($id)
-    {
-        $datauser = $this->userService->destroy($id);
-
-        return response()->json($datauser['message'], $datauser['statusCode']);
     }
 }
