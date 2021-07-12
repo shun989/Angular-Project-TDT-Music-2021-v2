@@ -109,3 +109,4 @@ export class AuthComponent implements OnInit {
     return this.formValue?.get('confirmpassword')
   }
 }
+

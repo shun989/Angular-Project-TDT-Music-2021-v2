@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,10 @@ export class AuthService {
       .pipe(map((res: any)=>{
         return res;
       }))
+  }
+
+  login(data: any): Observable<any> {
+    return this.http.post<any>(environment.url + 'auth/login', data);
   }
 
   postUser(data: any) {

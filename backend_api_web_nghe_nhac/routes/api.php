@@ -31,6 +31,7 @@ Route::group([
     Route::post('/change-password', [AuthController::class, 'changePassword'])->middleware('auth');
 });
 
+
 Route::get('/songs', [SongController::class,'index'])->name('songs.all');
 Route::get('/songs/{songId}', [SongController::class,'show'])->name('songs.show');
 Route::post('/songs', [SongController::class,'store'])->name('songs.store')->middleware('auth');
