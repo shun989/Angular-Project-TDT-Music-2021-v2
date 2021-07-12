@@ -1,0 +1,12 @@
+.ms_btn{
+  margin-right: 140px!important;
+  /*margin-top: 306px!important;*/
+  border-radius: 20px;
+}
+.error-messages{
+  color: red;
+}
+.icon-phone i{
+  color: #9ca7b1!important;
+  padding: 8px 15px 8px 0!important;
+}
