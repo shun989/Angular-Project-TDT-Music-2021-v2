@@ -1,12 +1,14 @@
-const openMenu = document.querySelector('#show-menu')
-const hideMenuIcon = document.querySelector('#hide-menu')
-const sideMenu = document.querySelector('#nav-menu')
+window.onload = function () {
+  const openMenu = document.querySelector('#show-menu')
+  const hideMenuIcon = document.querySelector('#hide-menu')
+  const sideMenu = document.querySelector('#nav-menu')
 
-openMenu.addEventListener('click', function () {
-  console.log('Click open menu');
-  sideMenu.classList.add('active');
-})
+  openMenu.addEventListener('click', function () {
+    console.log('Click open menu');
+    sideMenu.classList.add('active');
+  })
 
-hideMenuIcon.addEventListener('click', function () {
-  sideMenu.classList.remove('active')
-})
+  hideMenuIcon.addEventListener('click', function () {
+    sideMenu.classList.remove('active')
+  })
+}

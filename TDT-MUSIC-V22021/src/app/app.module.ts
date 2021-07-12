@@ -6,17 +6,15 @@ import { AppComponent } from './app.component';
 import { MusicPlayerComponent } from './components/music-player/music-player.component';
 import {FormBuilder, ReactiveFormsModule} from "@angular/forms";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {NavbarSidebarComponent} from "./components/core/navbar-sidebar/navbar-sidebar.component";
-import { FooterComponent } from './components/core/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
+import { AlbumComponent } from './components/album/album.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MusicPlayerComponent,
-    NavbarSidebarComponent,
-    FooterComponent,
-    LoginComponent
+    LoginComponent,
+    AlbumComponent,
   ],
   imports: [
     BrowserModule,
