@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../service/auth.service";
 import {AuthModel} from "./auth.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-auth',
@@ -17,42 +18,42 @@ export class AuthComponent implements OnInit {
   error_messages = {
     'username': [
       {type: 'required', message: 'User Name is required.'},
+      {type: 'minlength', message: 'User Name min length.'},
+      {type: 'maxlength', message: 'User Name max length.'},
     ],
-    'fname': [
-      {type: 'required', message: 'First Name is required.'},
+    'phone': [
+      {type: 'required', message: 'Phone is required.'},
+      {type: 'pattern', message: 'Phone length.'},
     ],
-
-    'lname': [
-      {type: 'required', message: 'Last Name is required.'},
-    ],
-
-    'email': [
-      {type: 'required', message: 'Email is required.'},
-      {type: 'minlength', message: 'Email length.'},
-      {type: 'maxlength', message: 'Email length.'},
-      {type: 'required', message: 'please enter a valid email address.'},
-    ],
-
     'password': [
-      {type: 'required', message: 'password is required.'},
-      {type: 'minlength', message: 'password length.'},
-      {type: 'maxlength', message: 'password length.'},
+      {type: 'required', message: 'Password is required.'},
+      {type: 'minlength', message: 'Password length.'},
+      {type: 'maxlength', message: 'Password length.'},
     ],
-    'confirmpassword': [
-      {type: 'required', message: 'password is required.'},
-      {type: 'minlength', message: 'password length.'},
-      {type: 'maxlength', message: 'password length.'},
+    'confirmPassword': [
+      {type: 'required', message: 'Confirm Password is required.'},
+      {type: 'minlength', message: 'Confirm Password min length.'},
+      {type: 'maxlength', message: 'Confirm Password max length.'},
     ],
   }
   constructor(private fb: FormBuilder,
-              private api: AuthService) { }
+              private api: AuthService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.formRegister = this.fb.group({
-      username: new FormControl ('', [Validators.required, Validators.minLength(4)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6),Validators.maxLength(30)]),
-      phone: new FormControl('', [Validators.required, Validators.pattern('(84|0[3|5|7|8|9])+([0-9]{8})')]),
-      confirmpassword: new FormControl('',[
+      username: new FormControl ('', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(50)]),
+      phone: new FormControl('', [
+        Validators.required,
+        Validators.pattern('(84|0[3|5|7|8|9])+([0-9]{8})')]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(30)]),
+      confirmPassword: new FormControl('',[
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(30),
@@ -66,10 +67,10 @@ export class AuthComponent implements OnInit {
   postUser():void {
 
     this.userModelObj.username = this.formRegister.value.username;
+    this.userModelObj.phone = this.formRegister.value.phone;
     this.userModelObj.password = this.formRegister.value.password;
     // @ts-ignore
-    this.userModelObj.password_confirmation = this.formRegister.value.confirmpassword;
-    this.userModelObj.phone = this.formRegister.value.phone;
+    this.userModelObj.password_confirmation = this.formRegister.value.confirmPassword;
 
     this.api.postUser(this.userModelObj).subscribe(res =>{
         alert("Register Success.");
@@ -86,7 +87,7 @@ export class AuthComponent implements OnInit {
     // @ts-ignore
     const {value: password} = formGroup.get('password');
     // @ts-ignore
-    const {value: confirmPassword} = formGroup.get('confirmpassword');
+    const {value: confirmPassword} = formGroup.get('confirmPassword');
     return password === confirmPassword ? null : {passwordNotMatch: true};
   }
 
@@ -101,8 +102,9 @@ export class AuthComponent implements OnInit {
   get password(){
     return this.formRegister?.get('password')
   }
-  get confirmpassword(){
-    return this.formRegister?.get('confirmpassword')
+
+  get confirmPassword(){
+    return this.formRegister?.get('confirmPassword')
   }
 }
 
