@@ -8,10 +8,10 @@ $(function() {
             cssSelectorAncestor: "#jp_container_1"
         }, [{
 			image : 'assets/images/weekly/song1.jpg',
-            title: "Cro Magnon Man",
+            title: "Samara",
             artist: "Mushroom Records",
-            mp3: "http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3",
-            oga: "http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg",
+            mp3: "https://matrixekun.000webhostapp.com/mp3/y2mate.com%20-%20Samsara%20%20Tungevaag%20%20Raaban%20%20Jane%20Kim%20Choreography.mp3",
+            oga: "https://matrixekun.000webhostapp.com/mp3/y2mate.com%20-%20Samsara%20%20Tungevaag%20%20Raaban%20%20Jane%20Kim%20Choreography.mp3",
 			option : myPlayListOtion
         }, {
 			image : 'assets/images/weekly/song2.jpg',

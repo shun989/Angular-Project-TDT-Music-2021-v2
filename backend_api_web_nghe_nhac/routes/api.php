@@ -42,8 +42,6 @@ Route::get('/{id_singer}/songs', [SongController::class,'songsOfSinger'])->name(
 
 Route::get('/users', [UserController::class,'index'])->name('users.all');
 Route::get('/users/{userId}', [UserController::class,'show'])->name('users.show');
-
-
 Route::get('/singers', [SingerController::class,'index'])->name('singers.all');
 Route::get('/singers/{singerId}', [SingerController::class,'show'])->name('singers.show');
 Route::post('/singers', [SingerController::class,'store'])->name('singers.store')->middleware('auth');
