@@ -52,7 +52,6 @@ class SongController extends Controller
     public function destroy($id)
     {
         $datasongs = $this->songService->destroy($id);
-
         return response()->json($datasongs['message'], $datasongs['statusCode']);
     }
 
