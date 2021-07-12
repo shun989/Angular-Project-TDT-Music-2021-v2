@@ -927,7 +927,9 @@ ul.ms_lang_box:after {
 	border-radius: 10px;
 }
 .ms_rcnt_box_img img {
-	width: 100%;
+	/*width: 100%;*/
+  width: 240px;
+  height: 240px;
 	border-radius: 10px;
 }
 .ms_rcnt_box_text {
@@ -3243,7 +3245,10 @@ i.fa_icon.form-lock {
 	background-position: -80px -40px;
 }
 .ms_register_form a.ms_btn,
-.ms_lang_btn a.ms_btn {
+.ms_register_form button.ms_btn,
+.ms_lang_btn a.ms_btn,
+.ms_lang_btn button.ms_btn
+{
 	background-color: transparent;
 	height: 40px;
 	border: 1px solid #fff;

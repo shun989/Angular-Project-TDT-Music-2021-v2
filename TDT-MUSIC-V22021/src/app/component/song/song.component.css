@@ -1,13 +1,21 @@
-.main{
-  color: var(--font-page);
-  background-color: var(--page-all);
-  height: 1500px;
+.btn{
+  margin-bottom: 10px;
+  font-size: 15px;
+  width: 90px;
+  height: 35px;
+  border-radius: 5px;
 }
 
-.main-show{
-  padding-top: 75px;
+.ms-btn{
+  margin: 5px 0 0 0;
+  width: 55px;
+  height: 25px;
+  border-radius: 5px;
 }
 
 table{
-  color: var(--font-page);
+  color: white;
 }
+ #exampleModal{
+   z-index: 100!important;
+ }
