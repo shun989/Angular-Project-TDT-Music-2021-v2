@@ -20,6 +20,7 @@ import { QueueComponent } from './component/queue/queue.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import {LoginComponent} from "./auth/login/login.component";
 import {AuthComponent} from "./component/auth/auth.component";
+import { UploadComponent } from './upload/upload.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {AuthComponent} from "./component/auth/auth.component";
     UserTrackListComponent,
     QueueComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
