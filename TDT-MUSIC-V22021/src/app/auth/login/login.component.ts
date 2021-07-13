@@ -27,13 +27,12 @@ export class LoginComponent implements OnInit {
 
     let data = this.formLogin?.value;
     this.authService.login(data).subscribe(res => {
+
       if (res.error) {
           this.errMessage = res.message
       } else{
         localStorage.setItem('token', res.access_token)
         localStorage.setItem('user', res.user.username)
-        console.log(res.user.username)
-        // // console.log(res.user);
         // @ts-ignore
         $('#clear_modal').hide();
         // @ts-ignore
@@ -42,13 +41,12 @@ export class LoginComponent implements OnInit {
         $('body').removeClass("modal-open").css("padding-right", "0px");
         // @ts-ignore
         $('.modal-content').hide();
-        // @ts-ignore
-        $('.ms_top_btn').hide();
-        // @ts-ignore
-        $('#user').show()
-        // @ts-ignore
-        document.getElementById('user-name').innerText = res.user.username
+        this.reloadPage()
       }
     })
   }
+  reloadPage(): void {
+    window.location.reload();
+  }
+
 }

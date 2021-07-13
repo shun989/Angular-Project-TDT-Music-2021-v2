@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AuthModel} from "../../component/auth/auth.model";
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-signup',
@@ -7,9 +10,91 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
+
+  formRegister !: FormGroup;
+  userModelObj: AuthModel = new AuthModel();
+  userData !: any;
+
+  error_messages = {
+    'username': [
+      {type: 'required', message: 'User Name is required.'},
+      {type: 'minlength', message: 'User Name min length.'},
+      {type: 'maxlength', message: 'User Name max length.'},
+    ],
+    'phone': [
+      {type: 'required', message: 'Phone is required.'},
+      {type: 'pattern', message: 'Phone length.'},
+    ],
+    'password': [
+      {type: 'required', message: 'Password is required.'},
+      {type: 'minlength', message: 'Password length.'},
+      {type: 'maxlength', message: 'Password length.'},
+    ],
+    'confirmPassword': [
+      {type: 'required', message: 'Confirm Password is required.'},
+      {type: 'minlength', message: 'Confirm Password min length.'},
+      {type: 'maxlength', message: 'Confirm Password max length.'},
+    ],
+  }
+  constructor(private fb: FormBuilder,
+              private api: AuthService) { }
 
   ngOnInit(): void {
+    this.formRegister = this.fb.group({
+      username: new FormControl ('', [Validators.required, Validators.minLength(4)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6),Validators.maxLength(30)]),
+      phone: new FormControl('', [Validators.required, Validators.pattern('(84|0[3|5|7|8|9])+([0-9]{8})')]),
+      confirmpassword: new FormControl('',[
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(30),
+      ]),
+    },{
+      validators: this.passwordMatch.bind(this)
+    })
+  }
+
+
+  postUser():void {
+
+    this.userModelObj.username = this.formRegister.value.username;
+    this.userModelObj.password = this.formRegister.value.password;
+    // @ts-ignore
+    this.userModelObj.password_confirmation = this.formRegister.value.confirmpassword;
+    this.userModelObj.phone = this.formRegister.value.phone;
+
+    this.api.postUser(this.userModelObj).subscribe(res =>{
+        alert("Register Success.");
+        let ref = document.getElementById('cancel')
+        ref?.click();
+        this.formRegister.reset();
+      },
+      error => {
+        alert("Something Went Wrong!");
+      })
+  }
+
+  passwordMatch(formGroup: FormGroup) {
+    // @ts-ignore
+    const {value: password} = formGroup.get('password');
+    // @ts-ignore
+    const {value: confirmPassword} = formGroup.get('confirmpassword');
+    return password === confirmPassword ? null : {passwordNotMatch: true};
+  }
+
+  get username(){
+    return this.formRegister?.get('username')
+  }
+
+  get phone(){
+    return this.formRegister?.get('phone')
+  }
+
+  get password(){
+    return this.formRegister?.get('password')
+  }
+  get confirmpassword(){
+    return this.formRegister?.get('confirmpassword')
   }
 
 }
