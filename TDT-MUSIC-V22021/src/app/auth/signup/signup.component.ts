@@ -23,12 +23,12 @@ export class SignupComponent implements OnInit {
     ],
     'phone': [
       {type: 'required', message: 'Phone is required.'},
-      {type: 'pattern', message: 'Phone length.'},
+      {type: 'pattern', message: 'Telephone number wrong!'},
     ],
     'password': [
       {type: 'required', message: 'Password is required.'},
-      {type: 'minlength', message: 'Password length.'},
-      {type: 'maxlength', message: 'Password length.'},
+      {type: 'minlength', message: 'Password min length.'},
+      {type: 'maxlength', message: 'Password max length.'},
     ],
     'confirmPassword': [
       {type: 'required', message: 'Confirm Password is required.'},
@@ -43,8 +43,11 @@ export class SignupComponent implements OnInit {
     this.formRegister = this.fb.group({
       username: new FormControl ('', [Validators.required, Validators.minLength(4)]),
       password: new FormControl('', [Validators.required, Validators.minLength(6),Validators.maxLength(30)]),
-      phone: new FormControl('', [Validators.required, Validators.pattern('(84|0[3|5|7|8|9])+([0-9]{8})')]),
-      confirmpassword: new FormControl('',[
+      phone: new FormControl('', [
+        Validators.required,
+        Validators.pattern('(84|0[3|5|7|8|9])+([0-9]{8})'),
+      ]),
+      confirmPassword: new FormControl('',[
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(30),
@@ -60,7 +63,7 @@ export class SignupComponent implements OnInit {
     this.userModelObj.username = this.formRegister.value.username;
     this.userModelObj.password = this.formRegister.value.password;
     // @ts-ignore
-    this.userModelObj.password_confirmation = this.formRegister.value.confirmpassword;
+    this.userModelObj.password_confirmation = this.formRegister.value.confirmPassword;
     this.userModelObj.phone = this.formRegister.value.phone;
 
     this.api.postUser(this.userModelObj).subscribe(res =>{
@@ -78,7 +81,7 @@ export class SignupComponent implements OnInit {
     // @ts-ignore
     const {value: password} = formGroup.get('password');
     // @ts-ignore
-    const {value: confirmPassword} = formGroup.get('confirmpassword');
+    const {value: confirmPassword} = formGroup.get('confirmPassword');
     return password === confirmPassword ? null : {passwordNotMatch: true};
   }
 
@@ -93,8 +96,8 @@ export class SignupComponent implements OnInit {
   get password(){
     return this.formRegister?.get('password')
   }
-  get confirmpassword(){
-    return this.formRegister?.get('confirmpassword')
+  get confirmPassword(){
+    return this.formRegister?.get('confirmPassword')
   }
 
 }
