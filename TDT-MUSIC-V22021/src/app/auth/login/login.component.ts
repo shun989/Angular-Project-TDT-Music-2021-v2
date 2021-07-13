@@ -27,32 +27,25 @@ export class LoginComponent implements OnInit {
 
     let data = this.formLogin?.value;
     this.authService.login(data).subscribe(res => {
-      // @ts-ignore
-      $('#clear_modal').hide();
-      // @ts-ignore
-      $('.modal-backdrop').hide();
-      // @ts-ignore
-      $('body').removeClass("modal-open").css("padding-right", "0px");
-      // @ts-ignore
-      $('.modal-content').hide();
+
       if (res.error) {
           this.errMessage = res.message
       } else{
         localStorage.setItem('token', res.access_token)
         localStorage.setItem('user', res.user.username)
-        console.log(res.user.username)
-        // // console.log(res.user);
         // @ts-ignore
-        $('.ms_top_btn').hide();
-        // // @ts-ignore
-        // $('#user').show()
-        // // @ts-ignore
-        // document.getElementById('user-name').innerText = res.user.username
+        $('#clear_modal').hide();
+        // @ts-ignore
+        $('.modal-backdrop').hide();
+        // @ts-ignore
+        $('body').removeClass("modal-open").css("padding-right", "0px");
+        // @ts-ignore
+        $('.modal-content').hide();
+        this.reloadPage()
       }
     })
   }
-  abc(){
-    localStorage.getItem('user')
-    console.log(1)
+  reloadPage(): void {
+    window.location.reload();
   }
 }
