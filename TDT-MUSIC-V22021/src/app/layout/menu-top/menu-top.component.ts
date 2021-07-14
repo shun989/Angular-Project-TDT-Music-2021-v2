@@ -36,7 +36,8 @@ export class MenuTopComponent implements OnInit {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       this.checkLogin();
-      this.route.navigate(['/'])
+      // @ts-ignore
+      $('.modal-content').show();
     });
   }
 
