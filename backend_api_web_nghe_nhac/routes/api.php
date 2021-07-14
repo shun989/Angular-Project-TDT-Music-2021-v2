@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\SingerController;
 use App\Http\Controllers\SongController;
+use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -61,5 +62,4 @@ Route::prefix('singers')->group(function () {
     Route::get('/{singerId}/show', [SingerController::class, 'show'])->name('singers.show');
 });
 
-
-
+Route::post('/upload-file', [UploadController::class,'uploadAudio'])->name('music.upload');
