@@ -17,7 +17,7 @@
           <div  *ngIf="errmessage" class="alert alert-danger">
             {{ errmessage }}
           </div>
-          <form *ngIf="formRegister" [formGroup]="formRegister">
+          <form *ngIf="formRegister" [formGroup]="formRegister" (ngSubmit)="register()">
             <div class="form-group">
               <input type="text" placeholder="Enter Your Name" class="form-control" formControlName="username"
                      [ngClass]="username && username.invalid && (username.dirty || username.touched) ? 'is-invalid' : ''"/>
