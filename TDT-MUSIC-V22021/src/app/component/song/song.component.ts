@@ -36,7 +36,6 @@ export class SongComponent implements OnInit {
   getSongData():void {
     this.api.getAllSongs().subscribe(res => {
       this.songData = res;
-      console.log(res);
     })
   }
 

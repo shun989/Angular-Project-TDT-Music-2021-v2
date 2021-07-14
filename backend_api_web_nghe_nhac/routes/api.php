@@ -50,7 +50,7 @@ Route::middleware('jwt')->group(function () {
 });
 
 Route::prefix('songs')->group(function () {
-    Route::get('', [SongController::class, 'index'])->name('songs.all');
+    Route::get('/', [SongController::class, 'index'])->name('songs.all');
     Route::get('{songId}/show', [SongController::class, 'show'])->name('songs.show');
     Route::get('/new-song', [SongController::class, 'newSongs'])->name('songs.newSong');
     Route::get('/{id_singer}/songs', [SongController::class, 'songsOfSinger'])->name('songs.singer');

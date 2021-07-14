@@ -8,12 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Song extends Model
 {
     use HasFactory;
+
+    /**
+     * @var string[]
+     */
     protected $fillable = [
-        'song_name',
+        'title',
         'description',
-        'filename',
+        'mp3',
         'image',
-        'musician',
+        'artist',
         'singer_id',
         'user_id',
         'genre',

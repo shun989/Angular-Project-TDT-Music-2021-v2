@@ -11,11 +11,8 @@
         </div>
         <div class="ms_register_form">
           <h2>Register / Sign Up</h2>
-          <div  *ngIf="message" class="alert alert-success">
+          <div  *ngIf="message" class="alert alert-warning">
             {{ message }}
-          </div>
-          <div  *ngIf="errmessage" class="alert alert-danger">
-            {{ errmessage }}
           </div>
           <form *ngIf="formRegister" [formGroup]="formRegister" (ngSubmit)="register()">
             <div class="form-group">

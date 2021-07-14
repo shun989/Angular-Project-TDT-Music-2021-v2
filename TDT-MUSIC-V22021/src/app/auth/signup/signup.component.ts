@@ -15,8 +15,6 @@ export class SignupComponent implements OnInit {
   userModelObj: AuthModel = new AuthModel();
   userData !: any;
   message:string|undefined;
-  errmessage:string|undefined;
-
   error_messages = {
     'username': [
       {type: 'required', message: 'User Name is required.'},
@@ -39,7 +37,7 @@ export class SignupComponent implements OnInit {
     ],
   }
   constructor(private fb: FormBuilder,
-              private api: AuthService) { }
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     this.formRegister = this.fb.group({
@@ -68,14 +66,14 @@ export class SignupComponent implements OnInit {
     this.userModelObj.password_confirmation = this.formRegister.value.confirmPassword;
     this.userModelObj.phone = this.formRegister.value.phone;
 
-    this.api.createUser(this.userModelObj).subscribe(res =>{
+    this.authService.createUser(this.userModelObj).subscribe(res =>{
        this.message = 'Register Success'
         let ref = document.getElementById('cancel')
         ref?.click();
         this.formRegister.reset();
       },
       error => {
-        this.errmessage = 'Something Went Wrong!'
+        this.message = 'Something Went Wrong!'
       })
   }
 

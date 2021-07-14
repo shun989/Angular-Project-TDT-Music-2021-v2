@@ -10,8 +10,8 @@ import {Route, Router} from "@angular/router";
 export class MenuTopComponent implements OnInit {
   isLogin: boolean | undefined
   user: any;
-  constructor(private authService : AuthService,
-              private route: Router) { }
+  constructor(private authService : AuthService)
+  { }
 
   ngOnInit(): void {
     this.authService.currentLogin.subscribe(isLogin => this.isLogin = isLogin);
@@ -40,6 +40,4 @@ export class MenuTopComponent implements OnInit {
       $('.modal-content').show();
     });
   }
-
-
 }

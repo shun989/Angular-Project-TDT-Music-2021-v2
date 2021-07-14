@@ -34,7 +34,6 @@ export class HomeComponent implements OnInit {
   getSongData(): void {
     this.homeService.getAllSongs().subscribe(res => {
       this.songData = res;
-      console.log(res);
     })
   }
 }
