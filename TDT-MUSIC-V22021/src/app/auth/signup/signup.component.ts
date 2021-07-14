@@ -14,6 +14,8 @@ export class SignupComponent implements OnInit {
   formRegister !: FormGroup;
   userModelObj: AuthModel = new AuthModel();
   userData !: any;
+  message:string|undefined;
+  errmessage:string|undefined;
 
   error_messages = {
     'username': [
@@ -58,7 +60,7 @@ export class SignupComponent implements OnInit {
   }
 
 
-  postUser():void {
+  register():void {
 
     this.userModelObj.username = this.formRegister.value.username;
     this.userModelObj.password = this.formRegister.value.password;
@@ -66,14 +68,14 @@ export class SignupComponent implements OnInit {
     this.userModelObj.password_confirmation = this.formRegister.value.confirmPassword;
     this.userModelObj.phone = this.formRegister.value.phone;
 
-    this.api.postUser(this.userModelObj).subscribe(res =>{
-        alert("Register Success.");
+    this.api.createUser(this.userModelObj).subscribe(res =>{
+       this.message = 'Register Success'
         let ref = document.getElementById('cancel')
         ref?.click();
         this.formRegister.reset();
       },
       error => {
-        alert("Something Went Wrong!");
+        this.errmessage = 'Something Went Wrong!'
       })
   }
 
@@ -99,5 +101,13 @@ export class SignupComponent implements OnInit {
   get confirmPassword(){
     return this.formRegister?.get('confirmPassword')
   }
+  hideCurrentModel(){
+    // @ts-ignore
+    $('.hideCurrentModel').on('click', function() {
+      // @ts-ignore
+      $(this).closest('.modal-content').find('.form_close').trigger('click');
+    });
+  }
+
 
 }

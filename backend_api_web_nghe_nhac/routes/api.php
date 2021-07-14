@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\SingerController;
 use App\Http\Controllers\SongController;
+use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,23 +26,40 @@ Route::group([
 ], function ($router) {
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'register']);
-    Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
-    Route::post('/refresh', [AuthController::class, 'refresh'])->middleware('auth');
-    Route::get('/user-profile', [AuthController::class, 'userProfile'])->middleware('auth');
-    Route::post('/change-password', [AuthController::class, 'changePassword'])->middleware('auth');
+    Route::post('/refresh', [AuthController::class, 'refresh']);
 });
 
+Route::middleware('jwt')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
 
-Route::get('/songs', [SongController::class,'index'])->name('songs.all');
-Route::get('/songs/{songId}', [SongController::class,'show'])->name('songs.show');
-Route::post('/songs', [SongController::class,'store'])->name('songs.store')->middleware('auth');
-Route::put('/songs/{songId}', [SongController::class,'update'])->name('songs.update')->middleware('auth');
-Route::delete('/songs/{songId}', [SongController::class,'destroy'])->name('songs.destroy')->middleware('auth');
-Route::get('/latest/songs/',[SongController::class,'newSong'])->name('songs.latest');
-Route::get('/{id_singer}/songs', [SongController::class,'songsOfSinger'])->name('songs.singer');
-Route::post('/upload-file', [SongController::class,'uploadAudio'])->name('songs.upload');
+    Route::prefix('me')->group(function () {
+        Route::post('/change-password', [AuthController::class, 'changePassword']);
+        Route::get('/user-profile', [AuthController::class, 'userProfile']);
+    });
 
-Route::get('/singers', [SingerController::class,'index'])->name('singers.all');
-Route::get('/singers/{singerId}', [SingerController::class,'show'])->name('singers.show');
-Route::post('/singers', [SingerController::class,'store'])->name('singers.store')->middleware('auth');
-Route::put('/singers/{singerId}', [SingerController::class,'update'])->name('singers.update')->middleware('auth');
+    Route::prefix('songs')->group(function () {
+        Route::get('{id_user}/user',[SongController::class,'songOfUser'])->name('songs.songsOfUser');
+        Route::post('/', [SongController::class, 'store'])->name('songs.store');
+        Route::put('/{songId}/update', [SongController::class, 'update'])->name('songs.update');
+        Route::delete('/{songId}/delete', [SongController::class, 'destroy'])->name('songs.destroy');
+    });
+
+    Route::prefix('singers')->group(function () {
+        Route::post('', [SingerController::class, 'store'])->name('singers.store');
+        Route::put('/{singerId}/update', [SingerController::class, 'update'])->name('singers.update');
+    });
+});
+
+Route::prefix('songs')->group(function () {
+    Route::get('', [SongController::class, 'index'])->name('songs.all');
+    Route::get('{songId}/show', [SongController::class, 'show'])->name('songs.show');
+    Route::get('/new-song', [SongController::class, 'newSongs'])->name('songs.newSong');
+    Route::get('/{id_singer}/songs', [SongController::class, 'songsOfSinger'])->name('songs.singer');
+});
+
+Route::prefix('singers')->group(function () {
+    Route::get('', [SingerController::class, 'index'])->name('singers.all');
+    Route::get('/{singerId}/show', [SingerController::class, 'show'])->name('singers.show');
+});
+
+Route::post('/upload-file', [UploadController::class,'uploadAudio'])->name('music.upload');

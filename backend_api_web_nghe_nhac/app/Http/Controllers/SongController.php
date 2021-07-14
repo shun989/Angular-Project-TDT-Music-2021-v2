@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Song;
 use App\Services\SongService;
 use Illuminate\Http\Request;
+use function Symfony\Component\String\u;
 
 class SongController extends Controller
 {
@@ -22,7 +23,7 @@ class SongController extends Controller
         return response()->json($songs, 200);
     }
 
-    public function newSong()
+    public function newSongs()
     {
         $songs = Song::all()->sortByDesc('id');
         return response()->json($songs, 200);
@@ -38,7 +39,6 @@ class SongController extends Controller
     public function store(Request $request)
     {
         $datasongs = $this->songService->create($request->all());
-
         return response()->json($datasongs['songs'], $datasongs['statusCode']);
     }
 
@@ -55,24 +55,15 @@ class SongController extends Controller
         return response()->json($datasongs['message'], $datasongs['statusCode']);
     }
 
-    public function songsOfSinger($id_singer)
+    public function songsOfSinger($singer_id)
     {
-        $songs = Song::all()->where('singer_id','=',$id_singer);
+        $songs = Song::all()->where('singer_id','=',$singer_id);
         return response()->json($songs, 200);
     }
-
-    public function uploadAudio(Request $request){
-
-        if ($request->hasFile('music')) {
-            $file = $request->file('music');
-            $fileName = $file->getClientOriginalName();
-            $extension = $file->getClientOriginalExtension();
-            $audio = date('His').'-'.$fileName;
-            $file->move(public_path('music'),$audio);
-            return response()->json(['message'=> 'Audio upload Successfully']);
-        }else{
-            return response()->json(['message'=> 'Select file first']);
-        }
+    public function songsOfUser($user_id)
+    {
+        $songs = Song::all()->where('user_id','=',$user_id);
+        return response()->json($songs, 200);
     }
 
 }

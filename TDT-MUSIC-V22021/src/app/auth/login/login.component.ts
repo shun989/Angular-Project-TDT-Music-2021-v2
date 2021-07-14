@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import {AuthService} from "../../service/auth.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
+import {HomeComponent} from "../../component/home/home.component";
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
   errMessage = '';
   constructor(private authService: AuthService,
               private fb: FormBuilder,
-              private route: Router) { }
+              private route: Router) {
+  }
 
   ngOnInit(): void {
     this.formLogin = this.fb.group({
@@ -24,15 +26,13 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-
     let data = this.formLogin?.value;
     this.authService.login(data).subscribe(res => {
-
       if (res.error) {
-          this.errMessage = res.message
-      } else{
+        this.errMessage = res.message
+      } else {
         localStorage.setItem('token', res.access_token)
-        localStorage.setItem('user', res.user.username)
+        localStorage.setItem('user', JSON.stringify(res.user))
         // @ts-ignore
         $('#clear_modal').hide();
         // @ts-ignore
@@ -41,11 +41,25 @@ export class LoginComponent implements OnInit {
         $('body').removeClass("modal-open").css("padding-right", "0px");
         // @ts-ignore
         $('.modal-content').hide();
-        this.reloadPage()
+        this.changeIsLogin()
+        this.changeUserLogin()
       }
     })
   }
-  reloadPage(): void {
-    window.location.reload();
+  changeIsLogin(){
+    let isLogin = this.authService.isLogin()
+    this.authService.changeIsLogin(isLogin);
+  }
+  changeUserLogin(){
+    let user =  JSON.parse(<string>(localStorage.getItem('user')));
+    return this.authService.changeUserLogin(user)
+  }
+
+  hideCurrentModel() {
+    // @ts-ignore
+    $('.hideCurrentModel').on('click', function () {
+      // @ts-ignore
+      $(this).closest('.modal-content').find('.form_close').trigger('click');
+    });
   }
 }

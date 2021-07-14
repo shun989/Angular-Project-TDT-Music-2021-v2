@@ -25,7 +25,7 @@ class AuthController extends Controller
     {
         if (!$token = auth()->attempt($request->all())) {
             return response()->json(
-                ['error' => 'Unauthorized', 'message' => 'Tai khoan khong chinh xac']
+                ['error' => 'Unauthorized', 'message' => 'Login failed']
             );
         }
 
@@ -87,9 +87,7 @@ class AuthController extends Controller
      */
     public function logout()
     {
-
         auth()->logout();
-
         return response()->json(['message' => 'User successfully signed out']);
     }
 

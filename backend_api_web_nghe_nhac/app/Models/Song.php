@@ -17,6 +17,7 @@ class Song extends Model
         'singer_id',
         'user_id',
         'genre',
-        'album'
+        'album',
+        'listens'
     ];
 }

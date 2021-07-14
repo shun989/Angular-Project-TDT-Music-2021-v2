@@ -14,7 +14,7 @@ export class HomeService {
   constructor(private http: HttpClient) { }
 
   getAllSongs() {
-    return this.http.get<any>("http://localhost:8000/api/songs")
+    return this.http.get<any>(this.songsUrl)
       .pipe(map((res: any)=>{
         return res;
       }))
