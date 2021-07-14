@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\SingerController;
 use App\Http\Controllers\SongController;
+use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -37,7 +38,7 @@ Route::middleware('jwt')->group(function () {
     });
 
     Route::prefix('songs')->group(function () {
-        Route::get('{id_user}/user',[SongController::class,'songOfUser'])->name('songs.songsOfUser');
+        Route::get('{id_user}/user', [SongController::class, 'songOfUser'])->name('songs.songsOfUser');
         Route::post('/', [SongController::class, 'store'])->name('songs.store');
         Route::put('/{songId}/update', [SongController::class, 'update'])->name('songs.update');
         Route::delete('/{songId}/delete', [SongController::class, 'destroy'])->name('songs.destroy');
@@ -60,6 +61,12 @@ Route::prefix('singers')->group(function () {
     Route::get('', [SingerController::class, 'index'])->name('singers.all');
     Route::get('/{singerId}/show', [SingerController::class, 'show'])->name('singers.show');
 });
+
+Route::get('/albums', [AlbumController::class, 'index']);
+Route::post('/albums', [AlbumController::class, 'store']);
+Route::delete('/albums/{id}', [AlbumController::class, 'destroy']);
+Route::put('/albums/{id}', [AlbumController::class, 'update']);
+Route::get('/albums/search/{name}', [AlbumController::class, 'search']);
 
 
 
