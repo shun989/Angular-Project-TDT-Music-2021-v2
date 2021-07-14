@@ -39,7 +39,6 @@ class SongController extends Controller
     public function store(Request $request)
     {
         $datasongs = $this->songService->create($request->all());
-
         return response()->json($datasongs['songs'], $datasongs['statusCode']);
     }
 

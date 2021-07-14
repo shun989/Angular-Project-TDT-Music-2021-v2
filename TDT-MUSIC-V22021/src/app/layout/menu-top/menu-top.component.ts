@@ -1,5 +1,6 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
 import {AuthService} from "../../service/auth.service";
+import {Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-menu-top',
@@ -9,7 +10,8 @@ import {AuthService} from "../../service/auth.service";
 export class MenuTopComponent implements OnInit {
   isLogin: boolean | undefined
   user: any;
-  constructor(private authService : AuthService) { }
+  constructor(private authService : AuthService,
+              private route: Router) { }
 
   ngOnInit(): void {
     this.authService.currentLogin.subscribe(isLogin => this.isLogin = isLogin);
@@ -34,6 +36,7 @@ export class MenuTopComponent implements OnInit {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       this.checkLogin();
+      this.route.navigate(['/'])
     });
   }
 

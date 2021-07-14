@@ -34,12 +34,11 @@ Route::middleware('jwt')->group(function () {
     Route::prefix('me')->group(function () {
         Route::post('/change-password', [AuthController::class, 'changePassword']);
         Route::get('/user-profile', [AuthController::class, 'userProfile']);
-
     });
 
     Route::prefix('songs')->group(function () {
         Route::get('{id_user}/user',[SongController::class,'songOfUser'])->name('songs.songsOfUser');
-        Route::post('', [SongController::class, 'store'])->name('songs.store');
+        Route::post('/', [SongController::class, 'store'])->name('songs.store');
         Route::put('/{songId}/update', [SongController::class, 'update'])->name('songs.update');
         Route::delete('/{songId}/delete', [SongController::class, 'destroy'])->name('songs.destroy');
     });
