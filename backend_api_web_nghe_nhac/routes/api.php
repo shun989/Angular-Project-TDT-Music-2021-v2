@@ -39,6 +39,7 @@ Route::put('/songs/{songId}', [SongController::class,'update'])->name('songs.upd
 Route::delete('/songs/{songId}', [SongController::class,'destroy'])->name('songs.destroy')->middleware('auth');
 Route::get('/latest/songs/',[SongController::class,'newSong'])->name('songs.latest');
 Route::get('/{id_singer}/songs', [SongController::class,'songsOfSinger'])->name('songs.singer');
+Route::post('/upload-file', [SongController::class,'uploadAudio'])->name('songs.upload');
 
 Route::get('/singers', [SingerController::class,'index'])->name('singers.all');
 Route::get('/singers/{singerId}', [SingerController::class,'show'])->name('singers.show');

@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/',[\App\Http\Controllers\SongController::class, 'upload']);
+//Route::post('/',[\App\Http\Controllers\SongController::class, 'uploadAudio']);
+//
