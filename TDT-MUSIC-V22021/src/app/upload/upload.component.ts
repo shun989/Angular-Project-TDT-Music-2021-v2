@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {FileUploader} from "ng2-file-upload";
+import {Component, OnInit} from '@angular/core';
+import {NgForm} from "@angular/forms";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-upload',
@@ -8,47 +11,35 @@ import {FileUploader} from "ng2-file-upload";
 })
 export class UploadComponent implements OnInit {
 
-  uploader:FileUploader;
-  hasBaseDropZoneOver:boolean;
-  hasAnotherDropZoneOver:boolean;
-  response:string;
+  constructor(private http:HttpClient) { }
+  fileData:any;
 
-  constructor (){
+  fileEvent(e: any){
+    this.fileData = e.target.files[0];
+  }
 
-    this.uploader = new FileUploader({
-      // url: URL,
-      disableMultipart: true, // 'DisableMultipart' phải là 'true' để formatDataFunction được gọi.
-      formatDataFunctionIsAsync: true,
-      formatDataFunction: async (item: { _file: { name: any; size: any; type: any; }; }) => {
-        return new Promise( (resolve, reject) => {
-          resolve({
-            name: item._file.name,
-            length: item._file.size,
-            contentType: item._file.type,
-            date: new Date()
-          });
-        });
-      }
+  onSubmitform(f: NgForm) {
+
+    var myFormData = new FormData();
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+    myFormData.append('music', this.fileData);
+    /* Image Post Request */
+    this.http.post('http://localhost:8000/api/upload-file', myFormData, {
+      headers: headers
+    }).subscribe(res => {
+
+      Swal.fire({
+        title: 'Hurray!!',
+        // @ts-ignore
+        text:  res['message'],
+        icon: 'success'
+      });
     });
-
-    this.hasBaseDropZoneOver = false;
-    this.hasAnotherDropZoneOver = false;
-
-    this.response = '';
-
-    this.uploader.response.subscribe( res => this.response = res );
-  }
-
-  public fileOverBase(e:any):void {
-    this.hasBaseDropZoneOver = e;
-  }
-
-  public fileOverAnother(e:any):void {
-    this.hasAnotherDropZoneOver = e;
   }
 
   ngOnInit(): void {
   }
-
 
 }

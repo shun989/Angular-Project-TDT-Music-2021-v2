@@ -12,11 +12,9 @@ export class SongComponent implements OnInit {
   formValue !: FormGroup;
   songModelObj: SongModel = new SongModel();
   songData !: any;
-  showAdd !: boolean;
-  showUpdate !: boolean;
 
   constructor(private formBuilder: FormBuilder,
-              private api: SongService) { }
+              private songService: SongService) { }
 
   ngOnInit(): void {
     this.formValue = this.formBuilder.group({
@@ -34,52 +32,44 @@ export class SongComponent implements OnInit {
   }
 
   getSongData():void {
-    this.api.getAllSongs().subscribe(res => {
+    this.songService.getAllSongs().subscribe(res => {
       this.songData = res;
     })
   }
 
-  clickAddSong():void {
-    this.formValue.reset();
-    this.showAdd = true;
-    this.showUpdate = false;
-  }
-
-  postSong():void {
-    this.songModelObj.song_name = this.formValue.value.song_name;
-    this.songModelObj.description = this.formValue.value.description;
-    this.songModelObj.filename = this.formValue.value.filename;
-    this.songModelObj.image = this.formValue.value.image;
-    this.songModelObj.musician = this.formValue.value.musician;
-    this.songModelObj.genre = this.formValue.value.genre;
-    this.songModelObj.album = this.formValue.value.album;
-    this.songModelObj.singer_id = this.formValue.value.singer_id;
-    this.songModelObj.user_id = this.formValue.value.user_id;
-
-    this.api.postSong(this.songModelObj).subscribe(res =>{
-      alert("Song Add Success.");
-        let ref = document.getElementById('cancel')
-        ref?.click();
-      this.formValue.reset();
-      this.getSongData();
-    },
-      error => {
-      alert("Something Went Wrong!");
-      })
-  }
+  // postSong():void {
+  //   this.songModelObj.song_name = this.formValue.value.song_name;
+  //   this.songModelObj.description = this.formValue.value.description;
+  //   this.songModelObj.filename = this.formValue.value.filename;
+  //   this.songModelObj.image = this.formValue.value.image;
+  //   this.songModelObj.musician = this.formValue.value.musician;
+  //   this.songModelObj.genre = this.formValue.value.genre;
+  //   this.songModelObj.album = this.formValue.value.album;
+  //   this.songModelObj.singer_id = this.formValue.value.singer_id;
+  //   this.songModelObj.user_id = this.formValue.value.user_id;
+  //
+  //   this.songService.postSong(this.songModelObj).subscribe(res =>{
+  //     alert("Song Add Success.");
+  //       let ref = document.getElementById('cancel')
+  //       ref?.click();
+  //     this.formValue.reset();
+  //     this.getSongData();
+  //   },
+  //     error => {
+  //     alert("Something Went Wrong!");
+  //     })
+  // }
 
   deleteSong(item: any) {
     if (confirm("Are you Sure?")){
       this.songData = this.songData.filter((i: any) => i !== item);
-      this.api.deleteSong(item.id).subscribe( res => {
+      this.songService.deleteSong(item.id).subscribe( res => {
         this.getSongData();
       })
     }
   }
 
   onUpdate(item: any) {
-    this.showAdd = false;
-    this.showUpdate = true;
     this.songModelObj.id = item.id;
     this.formValue.controls['song_name'].setValue(item.song_name);
     this.formValue.controls['description'].setValue(item.description);
@@ -92,24 +82,24 @@ export class SongComponent implements OnInit {
     this.formValue.controls['user_id'].setValue(item.user_id);
   }
 
-  updateSongDetails() {
-    this.songModelObj.song_name = this.formValue.value.song_name;
-    this.songModelObj.description = this.formValue.value.description;
-    this.songModelObj.filename = this.formValue.value.filename;
-    this.songModelObj.image = this.formValue.value.image;
-    this.songModelObj.musician = this.formValue.value.musician;
-    this.songModelObj.genre = this.formValue.value.genre;
-    this.songModelObj.album = this.formValue.value.album;
-    this.songModelObj.singer_id = this.formValue.value.singer_id;
-    this.songModelObj.user_id = this.formValue.value.user_id;
-
-    this.api.updateSong(this.songModelObj, this.songModelObj.id)
-      .subscribe(res =>{
-        alert("Update Successfully.");
-        let ref = document.getElementById('cancel')
-        ref?.click();
-        this.formValue.reset();
-        this.getSongData();
-      })
-  }
+  // updateSongDetails() {
+  //   this.songModelObj.song_name = this.formValue.value.song_name;
+  //   this.songModelObj.description = this.formValue.value.description;
+  //   this.songModelObj.filename = this.formValue.value.filename;
+  //   this.songModelObj.image = this.formValue.value.image;
+  //   this.songModelObj.musician = this.formValue.value.musician;
+  //   this.songModelObj.genre = this.formValue.value.genre;
+  //   this.songModelObj.album = this.formValue.value.album;
+  //   this.songModelObj.singer_id = this.formValue.value.singer_id;
+  //   this.songModelObj.user_id = this.formValue.value.user_id;
+  //
+  //   this.songService.updateSong(this.songModelObj, this.songModelObj.id)
+  //     .subscribe(res =>{
+  //       alert("Update Successfully.");
+  //       let ref = document.getElementById('cancel')
+  //       ref?.click();
+  //       this.formValue.reset();
+  //       this.getSongData();
+  //     })
+  // }
 }

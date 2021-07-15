@@ -1,0 +1,68 @@
+<div class="card">
+  <div class="card-header">
+    Update Song
+  </div>
+  <div class="card-body">
+    <div class="form-group col-12">
+      <form class="row g-3">
+        <div class="col-12">
+          <label class="form-label">Image</label>
+          <input type="text" class="form-control" formControlName="description">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Song file</label>
+          <input type="file" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">File Song Name</label>
+          <input type="text" class="form-control" formControlName="filename">
+        </div>
+        <div class="col-md-6">
+          <label for="inputPassword4" class="form-label">Song Name</label>
+          <input type="text" class="form-control" id="inputPassword4" formControlName="song_name">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Musician</label>
+          <input type="text" class="form-control" formControlName="musician">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Singer</label>
+          <select class="form-select form-control" formControlName="singer_id">
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Poster</label>
+          <select class="form-select form-control" formControlName="user_id">
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Genre</label>
+          <select class="form-select form-control" formControlName="genre">
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Album</label>
+          <select class="form-select form-control" formControlName="album">
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
+        <div class="col-12 mb-3">
+          <label class="form-label">Description</label>
+          <textarea rows="3" type="text" class="col-12" formControlName="description"></textarea>
+        </div>
+
+        <div class="col-12 btn-edit">
+          <button routerLink="../" type="button" id="cancel" class="btn btn-info" data-bs-dismiss="modal">Close</button>
+          <button (click)="updateSong()" type="submit" class="btn btn-success mx-5">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
