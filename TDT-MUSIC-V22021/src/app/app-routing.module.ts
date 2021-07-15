@@ -6,6 +6,9 @@ import {ArtistComponent} from "./component/artist/artist.component";
 import {GenreComponent} from "./component/genre/genre.component";
 import {SongComponent} from "./component/song/song.component";
 import {TopTrackComponent} from "./component/top-track/top-track.component";
+import {UploadComponent} from "./upload/upload.component";
+import {CreateComponent} from "./component/song/create/create.component";
+import {UpdateComponent} from "./component/song/update/update.component";
 
 const routes: Routes = [
   {
@@ -26,11 +29,28 @@ const routes: Routes = [
   },
   {
     path: 'song',
-    component: SongComponent
+    children: [
+      {
+        path: '',
+        component: SongComponent
+      },
+      {
+        path: 'create',
+        component: CreateComponent
+      },
+      {
+        path: 'update',
+        component: UpdateComponent
+      }
+    ]
   },
   {
     path: 'top-track',
     component: TopTrackComponent
+  },
+  {
+    path: 'upload-file',
+    component: UploadComponent
   }
 
 ];

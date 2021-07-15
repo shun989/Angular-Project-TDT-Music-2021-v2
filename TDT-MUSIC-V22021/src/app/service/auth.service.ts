@@ -16,7 +16,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(data: any): Observable<any> {
-    return this.http.post<any>(environment.url + 'auth/login', data);
+    return this.http.post<any>("http://localhost:8000/api/auth/login", data);
   }
 
   changeIsLogin(isLogin:boolean){
