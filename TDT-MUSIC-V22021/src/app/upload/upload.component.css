@@ -1,5 +1,18 @@
-.my-drop-zone { border: dotted 3px lightgray; }
-.nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
-.another-file-over-class { border: dotted 3px green; }
+.card{
+  margin: 0 150px;
+  height: 400px;
+}
+.card-body{
+  margin-top: 150px;
+  margin-left: 200px;
+}
 
-/*html, body { height: 100%; }*/
+.swal-wide{
+  width: 850px!important;
+}
+
+button{
+  height: 35px;
+  font-size: 15px;
+  border-radius: 5px;
+}

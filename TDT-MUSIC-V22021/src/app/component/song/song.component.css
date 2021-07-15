@@ -17,6 +17,6 @@ table{
   color: white;
   font-size: 15px;
 }
- #exampleModal{
-   z-index: 100!important;
+ h1{
+   margin-top: 20px;
  }

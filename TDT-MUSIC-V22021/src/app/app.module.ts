@@ -22,6 +22,8 @@ import {LoginComponent} from "./auth/login/login.component";
 import {AuthComponent} from "./component/auth/auth.component";
 import { UploadComponent } from './upload/upload.component';
 import { MenuTopComponent } from './layout/menu-top/menu-top.component';
+import { CreateComponent } from './component/song/create/create.component';
+import { UpdateComponent } from './component/song/update/update.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { MenuTopComponent } from './layout/menu-top/menu-top.component';
     LoginComponent,
     SignupComponent,
     UploadComponent,
-    MenuTopComponent
+    MenuTopComponent,
+    CreateComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,
