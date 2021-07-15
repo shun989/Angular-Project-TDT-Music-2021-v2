@@ -20,7 +20,8 @@ import {LoginComponent} from "../../auth/login/login.component";
 })
 
 export class HomeComponent implements OnInit {
-  songData !: any;
+  // @ts-ignore
+  songData !: Array ;
   constructor(private formBuilder: FormBuilder,
               private homeService: HomeService,
               ) {
@@ -34,6 +35,7 @@ export class HomeComponent implements OnInit {
   getSongData(): void {
     this.homeService.getAllSongs().subscribe(res => {
       this.songData = res;
+      console.log(this.songData)
     })
   }
 }

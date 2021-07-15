@@ -1,6 +1,6 @@
 import {Component, OnInit, Output} from '@angular/core';
 import {AuthService} from "../../service/auth.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {HomeComponent} from "../../component/home/home.component";
 
@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.formLogin = this.fb.group({
-      phone: [''],
-      password: ['']
+      phone: ['',[Validators.required]],
+      password: ['',[Validators.required]]
     })
   }
 
@@ -61,5 +61,11 @@ export class LoginComponent implements OnInit {
       // @ts-ignore
       $(this).closest('.modal-content').find('.form_close').trigger('click');
     });
+  }
+  get phone(){
+    return this.formLogin?.get('phone')
+  }
+  get password(){
+    return this.formLogin?.get('password')
   }
 }
