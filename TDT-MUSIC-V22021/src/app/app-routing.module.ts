@@ -12,13 +12,8 @@ import {UpdateComponent} from "./component/song/update/update.component";
 
 const routes: Routes = [
   {
-    path: 'Home',
-    children: [
-      {
-        path: '',
-        component: HomeComponent
-      }
-    ]
+    path: '',
+    component:HomeComponent
   },
 
   {

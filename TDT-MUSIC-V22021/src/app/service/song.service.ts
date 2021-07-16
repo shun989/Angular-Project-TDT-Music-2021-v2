@@ -24,15 +24,9 @@ export class SongService {
   postSong(data: any) {
     let token =localStorage.getItem('token');
     let headers_object = new HttpHeaders().set('Authorization', 'Bearer' + token);
-<<<<<<< HEAD
     let httpOptions = {headers: headers_object};
     return this.http.post<any>(this.songsUrl, data, httpOptions)
-=======
-    let httpOptions = {
-      headers: headers_object
-    };
-    return this.http.post<any>("http://localhost:8000/api/songs", data ,httpOptions)
->>>>>>> 4c551175dbef7207ae43443d6550bfd3fd15de4c
+
       .pipe(map((res: any)=>{
         console.log(res)
         return res
