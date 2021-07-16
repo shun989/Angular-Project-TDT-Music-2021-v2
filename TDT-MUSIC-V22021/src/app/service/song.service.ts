@@ -43,4 +43,16 @@ export class SongService {
     const url = `${this.songsUrl}/${id}`;
     return this.http.put(url, item, this.httpOptions).pipe();
   }
+  createSong(song:object):void{
+    let token = localStorage.getItem('token');
+    let headers_object = new HttpHeaders().set('Authorization', 'Bearer' + token);
+    let httpOptions = {
+      headers: headers_object
+    };
+
+    this.http.post<any>('http://127.0.0.1:8000/api/songs/upload-music', song, httpOptions).subscribe(
+      (res) => console.log(res),
+      (err) => console.log(err)
+    );
+  }
 }

@@ -4,33 +4,28 @@
   </div>
   <div class="card-body">
     <div class="form-group col-12">
-      <form  class="row g-3">
+      <form  class="row g-3" *ngIf="formCreate" [formGroup]="formCreate" (ngSubmit)="onSubmit()">
         <div class="col-12">
           <label class="form-label">Image</label>
-          <input type="text" class="form-control" formControlName="description">
+          <input type="text" class="form-control" formControlName="image" placeholder="http://...">
         </div>
         <div class="col-md-6">
           <label class="form-label" for="customFile">Select file</label>
-          <input type="file" class="form-control" id="customFile" name="myFile" formControlName="mp3" (change)="fileEvent($event)"/>
+          <input type="file" class="form-control" id="customFile" name="myFile" formControlName="mp3" (change)="onFileSelect($event)"/>
         </div>
         <div class="col-md-6">
           <label for="inputPassword4" class="form-label">Song Name</label>
           <input type="text" class="form-control" id="inputPassword4" formControlName="title">
         </div>
         <div class="col-md-6">
-          <label class="form-label">Musician</label>
-          <input type="text" class="form-control" formControlName="musician">
+          <label class="form-label">Artist</label>
+          <input type="text" class="form-control" formControlName="artist">
         </div>
         <div class="col-md-6">
           <label class="form-label">Singer</label>
-          <select class="form-select form-control" formControlName="singer_id" >
-            <option selected>Choose...</option>
-            <option value="1">Chang</option>
+          <select class="form-select form-control" formControlName="singer_id" *ngFor="let singer of singers">
+            <option value="{{singer.id}}">{{singer.name}}</option>
           </select>
-        </div>
-        <div class="col-md-6">
-          <label class="form-label">Poster</label>
-          <input type="number" class="form-control" formControlName="user_id">
         </div>
         <div class="col-md-6">
           <label class="form-label">Genre</label>
@@ -44,8 +39,6 @@
           <label class="form-label">Description</label>
           <textarea rows="3" type="text" class="col-12" formControlName="description"></textarea>
         </div>
-        <input type="text" value="0" hidden>
-
         <div class="col-12 btn-edit">
           <button routerLink="../" type="button" id="cancel" class="btn btn-info" data-bs-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-success mx-5">Add</button>
