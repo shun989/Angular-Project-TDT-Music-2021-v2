@@ -24,6 +24,7 @@ import { UploadComponent } from './upload/upload.component';
 import { MenuTopComponent } from './layout/menu-top/menu-top.component';
 import { CreateComponent } from './component/song/create/create.component';
 import { UpdateComponent } from './component/song/update/update.component';
+import { MusicBarComponent } from './layout/footer/music-bar/music-bar.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { UpdateComponent } from './component/song/update/update.component';
     UploadComponent,
     MenuTopComponent,
     CreateComponent,
-    UpdateComponent
+    UpdateComponent,
+    MusicBarComponent
   ],
   imports: [
     BrowserModule,

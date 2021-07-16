@@ -22,9 +22,15 @@ export class SongService {
   }
 
   postSong(data: any) {
-    return this.http.post<any>("http://localhost:8000/api/songs", data)
+    let token =localStorage.getItem('token');
+    let headers_object = new HttpHeaders().set('Authorization', 'Bearer' + token);
+    let httpOptions = {
+      headers: headers_object
+    };
+    return this.http.post<any>("http://localhost:8000/api/songs", data ,httpOptions)
       .pipe(map((res: any)=>{
-        return res;
+        console.log(res)
+        return res
       }))
   }
 

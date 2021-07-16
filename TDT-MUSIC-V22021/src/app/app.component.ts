@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'TDT-MUSIC-V22021';
+
+  click() {
+
+  }
 }

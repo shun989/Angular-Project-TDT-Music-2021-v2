@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup, NgForm} from "@angular/forms";
 import {SongModel} from "../song.model";
 import {SongService} from "../../../service/song.service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-create',
@@ -42,9 +41,9 @@ export class CreateComponent implements OnInit {
   }
 
   postSong():void {
-    this.songModelObj.song_name = this.formCreate.value.song_name;
+    this.songModelObj.title = this.formCreate.value.title;
     this.songModelObj.description = this.formCreate.value.description;
-    this.songModelObj.filename = this.formCreate.value.filename;
+    this.songModelObj.mp3 = this.formCreate.value.mp3;
     this.songModelObj.image = this.formCreate.value.image;
     this.songModelObj.musician = this.formCreate.value.musician;
     this.songModelObj.genre = this.formCreate.value.genre;
@@ -52,15 +51,16 @@ export class CreateComponent implements OnInit {
     this.songModelObj.singer_id = this.formCreate.value.singer_id;
     this.songModelObj.user_id = this.formCreate.value.user_id;
 
+
     this.songService.postSong(this.songModelObj).subscribe(res =>{
-        alert("Song Add Success.");
+        console.log(res)
         let ref = document.getElementById('cancel')
         ref?.click();
         this.formCreate.reset();
         this.getSongData();
       },
       error => {
-        alert("Something Went Wrong!");
+        console.log(error)
       })
   }
 
@@ -69,26 +69,26 @@ export class CreateComponent implements OnInit {
     this.fileData = e.target.files[0];
   }
 
-  onSubmitForm() {
-
-    var myFormData = new FormData();
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'multipart/form-data');
-    headers.append('Accept', 'application/json');
-    myFormData.append('music', this.fileData);
-    /* Image Post Request */
-    this.http.post('http://localhost:8000/api/upload-file', myFormData, {
-      headers: headers
-    }).subscribe(res => {
-
-      // Swal.fire({
-      //   title: 'Hurray!!',
-      //   // @ts-ignore
-      //   text:  res['message'],
-      //   icon: 'success'
-      // });
-    });
-  }
+  // onSubmitForm() {
+  //
+  //   var myFormData = new FormData();
+  //   const headers = new HttpHeaders();
+  //   headers.append('Content-Type', 'multipart/form-data');
+  //   headers.append('Accept', 'application/json');
+  //   myFormData.append('music', this.fileData);
+  //   /* Image Post Request */
+  //   this.http.post('http://localhost:8000/api/upload-file', myFormData, {
+  //     headers: headers
+  //   }).subscribe(res => {
+  //
+  //     // Swal.fire({
+  //     //   title: 'Hurray!!',
+  //     //   // @ts-ignore
+  //     //   text:  res['message'],
+  //     //   icon: 'success'
+  //     // });
+  //   });
+  // }
 
 
 }

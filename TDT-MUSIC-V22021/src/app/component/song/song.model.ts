@@ -1,12 +1,13 @@
 export class SongModel{
   id: number = 0;
-  song_name: string = '';
+  title: string = '';
   description: string = '';
-  filename: string = '';
+  mp3: any;
   image: string = '';
   musician: string = '';
   genre: string = '';
   album: string = '';
   singer_id: number = 0;
   user_id: number = 0;
+
 }

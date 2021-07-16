@@ -52,25 +52,25 @@ export class UpdateComponent implements OnInit {
   //   this.formUpdate.controls['user_id'].setValue(item.user_id);
   // }
 
-  updateSong() {
-    this.songModelObj.song_name = this.formUpdate.value.song_name;
-    this.songModelObj.description = this.formUpdate.value.description;
-    this.songModelObj.filename = this.formUpdate.value.filename;
-    this.songModelObj.image = this.formUpdate.value.image;
-    this.songModelObj.musician = this.formUpdate.value.musician;
-    this.songModelObj.genre = this.formUpdate.value.genre;
-    this.songModelObj.album = this.formUpdate.value.album;
-    this.songModelObj.singer_id = this.formUpdate.value.singer_id;
-    this.songModelObj.user_id = this.formUpdate.value.user_id;
-
-    this.songService.updateSong(this.songModelObj, this.songModelObj.id)
-      .subscribe(res =>{
-        alert("Update Successfully.");
-        let ref = document.getElementById('cancel')
-        ref?.click();
-        this.formUpdate.reset();
-        this.getSongData();
-      })
-  }
+  // updateSong() {
+  //   this.songModelObj.song_name = this.formUpdate.value.song_name;
+  //   this.songModelObj.description = this.formUpdate.value.description;
+  //   this.songModelObj.filename = this.formUpdate.value.filename;
+  //   this.songModelObj.image = this.formUpdate.value.image;
+  //   this.songModelObj.musician = this.formUpdate.value.musician;
+  //   this.songModelObj.genre = this.formUpdate.value.genre;
+  //   this.songModelObj.album = this.formUpdate.value.album;
+  //   this.songModelObj.singer_id = this.formUpdate.value.singer_id;
+  //   this.songModelObj.user_id = this.formUpdate.value.user_id;
+  //
+  //   this.songService.updateSong(this.songModelObj, this.songModelObj.id)
+  //     .subscribe(res =>{
+  //       alert("Update Successfully.");
+  //       let ref = document.getElementById('cancel')
+  //       ref?.click();
+  //       this.formUpdate.reset();
+  //       this.getSongData();
+  //     })
+  // }
 
 }

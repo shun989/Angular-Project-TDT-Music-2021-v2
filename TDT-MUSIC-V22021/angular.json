@@ -39,7 +39,6 @@
               "src/assets/js/plugins/nice_select/nice-select.css",
               "src/assets/js/plugins/player/volume.css",
               "src/assets/js/plugins/scroll/jquery.mCustomScrollbar.css",
-              "node_modules/sweetalert2/src/sweetalert2.scss"
             ],
             "scripts": [
               "src/assets/js/jquery.js",
@@ -52,7 +51,8 @@
               "src/assets/js/plugins/nice_select/jquery.nice-select.min.js",
               "src/assets/js/plugins/scroll/jquery.mCustomScrollbar.js",
               "src/assets/js/custom.js",
-              "node_modules/sweetalert2/dist/sweetalert2.js"
+              "src/assets/js/myJS.js"
+
             ]
           },
           "configurations": {
