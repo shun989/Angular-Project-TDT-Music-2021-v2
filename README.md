@@ -20,4 +20,4 @@ Sau khi git clone về có 2 project là:
   Chạy các lệnh sau để project hoạt động.
   
  - 2.1: npm install --save-dev @angular-devkit/build-angular
- - 2.2: ng s -
+ - 2.2: ng s  để ch
