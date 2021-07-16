@@ -42,6 +42,7 @@ class SongController extends Controller
         $fileName = date('His') . '-' . $file->getClientOriginalName();
         $data = $request->all();
         $data['mp3'] = $fileName;
+
         if ($request->hasFile('mp3')) {
             $extension = $file->getClientOriginalExtension();
             $audio = $fileName;
@@ -76,5 +77,10 @@ class SongController extends Controller
     {
         $songs = Song::all()->where('user_id', '=', $user_id);
         return response()->json($songs, 200);
+    }
+
+    public function view()
+    {
+        return view('welcome');
     }
 }
