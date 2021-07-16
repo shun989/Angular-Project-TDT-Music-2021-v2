@@ -5,26 +5,9 @@
         </div>
       </div>
       <div class="d-flex">
-<<<<<<< HEAD
-        <button routerLink="../song/create" type="button" class="btn btn-primary">
+        <button routerLink="/user/create" type="button" class="btn btn-primary">
           Add Song
         </button>
-        <button routerLink="../song/update" type="button" class="btn btn-primary">
-          Add Song
-        </button>
-=======
-        <a routerLink="../create">
-          <button  type="button" class="btn btn-primary">
-            Add Song Info
-          </button>
-        </a>
-<!--        <a routerLink="../upload-file">-->
-<!--          <button  type="button" class="btn btn-primary mx-5">-->
-<!--            Upload Song File-->
-<!--          </button>-->
-<!--        </a>-->
-
->>>>>>> 4a9cb30f906da66d807bb13fc2025c9bc38fa891
       </div>
       <table class="table">
         <thead>
@@ -55,11 +38,11 @@
           <td>{{song.album}}</td>
           <td>
             <audio controls loop>
-              <source src="{{song.mp3}}">
+              <source src="{{'http://127.0.0.1:8000/music/'+song.mp3}}">
             </audio>
           </td>
           <td class="action-btn">
-            <button (click)="onUpdate(song)" type="button" routerLink="../user/update"
+            <button (click)="onUpdate(song)" type="button" routerLink="/user/update"
                     class="ms-btn btn-info">
               Edit
             </button>

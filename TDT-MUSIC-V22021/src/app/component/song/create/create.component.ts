@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, NgForm} from "@angular/forms";
 import {SongService} from "../../../service/song.service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {SingerService} from "../../../service/singer.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create',
@@ -18,7 +19,8 @@ export class CreateComponent implements OnInit {
   constructor(private songService: SongService,
               private http: HttpClient,
               private fb: FormBuilder,
-              private singerService: SingerService) {
+              private singerService: SingerService,
+              private route: Router) {
   }
 
   ngOnInit(): void {
@@ -65,5 +67,6 @@ export class CreateComponent implements OnInit {
     formData.append('album', songData.album);
     formData.append('listens', '0');
    this.songService.createSong(formData);
+   this.route.navigate(['user/song'])
   }
 }
