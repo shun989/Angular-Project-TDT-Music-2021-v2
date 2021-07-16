@@ -4,8 +4,8 @@ Sau khi git clone về có 2 project là:
 
  Chạy các lệnh sau để project hoạt động.
  
- 1.1: composer install.
- 1.2: npm install.
+# 1.1: composer install.
+# 1.2: npm install.
  1.3: cp .env.example .env
  1.4: Vào file .env thay đổi các thông tin database của mình:
       DB_DATABASE= (db name)
