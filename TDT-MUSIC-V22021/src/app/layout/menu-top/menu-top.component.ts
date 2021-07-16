@@ -30,6 +30,7 @@ export class MenuTopComponent implements OnInit {
     }
     console.log(this.user.username)
   }
+
   logout():void {
     this.authService.logout().subscribe(res => {
       console.log(res)

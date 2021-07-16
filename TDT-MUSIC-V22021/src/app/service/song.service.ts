@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class SongService {
-  private songsUrl = "http://localhost:8000/api/songs";
+  songsUrl = "http://localhost:8000/api/songs";
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,7 +15,7 @@ export class SongService {
   constructor(private http: HttpClient) { }
 
   getAllSongs() {
-    return this.http.get<any>("http://localhost:8000/api/songs")
+    return this.http.get<any>(this.songsUrl)
       .pipe(map((res: any)=>{
         return res;
       }))
@@ -24,10 +24,15 @@ export class SongService {
   postSong(data: any) {
     let token =localStorage.getItem('token');
     let headers_object = new HttpHeaders().set('Authorization', 'Bearer' + token);
+<<<<<<< HEAD
+    let httpOptions = {headers: headers_object};
+    return this.http.post<any>(this.songsUrl, data, httpOptions)
+=======
     let httpOptions = {
       headers: headers_object
     };
     return this.http.post<any>("http://localhost:8000/api/songs", data ,httpOptions)
+>>>>>>> 4c551175dbef7207ae43443d6550bfd3fd15de4c
       .pipe(map((res: any)=>{
         console.log(res)
         return res
@@ -35,13 +40,25 @@ export class SongService {
   }
 
   deleteSong(id: number): Observable<any> {
+    let token =localStorage.getItem('token');
+    let headers_object = new HttpHeaders().set('Authorization', 'Bearer' + token);
+    let httpOptions = {
+      headers: headers_object
+    };
     const url = `${this.songsUrl}/${id}`;
-    return this.http.delete<any>(url, this.httpOptions).pipe();
+    // @ts-ignore
+    return this.http.delete<any>(url, this.httpOptions, httpOptions).pipe();
   }
 
   updateSong(item:any, id: number): Observable<any> {
+    let token =localStorage.getItem('token');
+    let headers_object = new HttpHeaders().set('Authorization', 'Bearer' + token);
+    let httpOptions = {
+      headers: headers_object
+    };
     const url = `${this.songsUrl}/${id}`;
-    return this.http.put(url, item, this.httpOptions).pipe();
+    // @ts-ignore
+    return this.http.put(url, item, this.httpOptions,httpOptions).pipe();
   }
   createSong(song:object):void{
     let token = localStorage.getItem('token');

@@ -5,12 +5,26 @@
         </div>
       </div>
       <div class="d-flex">
+<<<<<<< HEAD
         <button routerLink="../song/create" type="button" class="btn btn-primary">
           Add Song
         </button>
         <button routerLink="../song/update" type="button" class="btn btn-primary">
           Add Song
         </button>
+=======
+        <a routerLink="../create">
+          <button  type="button" class="btn btn-primary">
+            Add Song Info
+          </button>
+        </a>
+<!--        <a routerLink="../upload-file">-->
+<!--          <button  type="button" class="btn btn-primary mx-5">-->
+<!--            Upload Song File-->
+<!--          </button>-->
+<!--        </a>-->
+
+>>>>>>> 4a9cb30f906da66d807bb13fc2025c9bc38fa891
       </div>
       <table class="table">
         <thead>
@@ -19,7 +33,7 @@
           <th scope="col">image</th>
           <th scope="col">Name</th>
           <th scope="col">Description</th>
-          <th scope="col">musician</th>
+          <th scope="col">Artist</th>
           <th scope="col">singer</th>
           <th scope="col">user</th>
           <th scope="col">genre</th>
@@ -29,86 +43,30 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let item of songData; let i = index ">
+        <tr *ngFor="let song of songData; let i = index ">
           <th scope="row">{{i + 1}}</th>
-          <td><img style="width: 50px" src="{{item.image}}" alt=""></td>
-          <td>{{item.song_name}}</td>
-          <td>{{item.description}}</td>
-          <td>{{item.musician}}</td>
-          <td>{{item.singer_id}}</td>
-          <td>{{item.user_id}}</td>
-          <td>{{item.genre}}</td>
-          <td>{{item.album}}</td>
+          <td><img style="width: 50px" src="{{song.image}}" alt=""></td>
+          <td>{{song.title}}</td>
+          <td>{{song.description}}</td>
+          <td>{{song.artist}}</td>
+          <td>{{song.singer_id}}</td>
+          <td>{{song.user_id}}</td>
+          <td>{{song.genre}}</td>
+          <td>{{song.album}}</td>
           <td>
             <audio controls loop>
-              <source src="{{item.filename}}">
+              <source src="{{song.mp3}}">
             </audio>
           </td>
           <td class="action-btn">
-            <button (click)="onUpdate(item)" type="button" routerLink="../song/update"
+            <button (click)="onUpdate(song)" type="button" routerLink="../user/update"
                     class="ms-btn btn-info">
               Edit
             </button>
-            <button class="ms-btn btn-danger mx-2" (click)="deleteSong(item)">Delete</button>
+            <button class="ms-btn btn-danger mx-2" (click)="deleteSong(song)">Delete</button>
           </td>
         </tr>
         </tbody>
       </table>
 
-<!--      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--        <div class="modal-dialog">-->
-<!--          <div class="modal-content">-->
-<!--            <div class="modal-header">-->
-<!--              <h5 class="modal-title" id="exampleModalLabel">Song Details</h5>-->
-<!--              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--            </div>-->
-<!--            <div class="modal-body">-->
-<!--              <form>-->
-<!--                <div class="mb-3">-->
-<!--                  <label class="form-label">Image</label>-->
-<!--                  <input type="text" class="form-control" formControlName="image">-->
-<!--                </div>-->
-<!--                <div class="mb-3">-->
-<!--                  <label class="form-label">Song Name</label>-->
-<!--                  <input type="text" class="form-control" formControlName="song_name">-->
-<!--                </div>-->
-<!--                <div class="mb-3">-->
-<!--                  <label class="form-label">Description</label>-->
-<!--                  <input type="text" class="form-control" formControlName="description">-->
-<!--                </div>-->
-<!--                <div class="mb-3">-->
-<!--                  <label class="form-label">Musician</label>-->
-<!--                  <input type="text" class="form-control" formControlName="musician">-->
-<!--                </div>-->
-<!--                <div class="mb-3">-->
-<!--                  <label class="form-label">File Song</label>-->
-<!--                  <input type="text" class="form-control" formControlName="filename">-->
-<!--                </div>-->
-<!--                <div class="mb-3">-->
-<!--                  <label class="form-label">Singer</label>-->
-<!--                  <input type="text" class="form-control" formControlName="singer_id">-->
-<!--                </div>-->
-<!--                <div class="mb-3">-->
-<!--                  <label class="form-label">Poster</label>-->
-<!--                  <input type="text" class="form-control" formControlName="user_id">-->
-<!--                </div>-->
-<!--                <div class="mb-3">-->
-<!--                  <label class="form-label">Genre</label>-->
-<!--                  <input type="text" class="form-control" formControlName="genre">-->
-<!--                </div>-->
-<!--                <div class="mb-3">-->
-<!--                  <label class="form-label">Album</label>-->
-<!--                  <input type="text" class="form-control" formControlName="album">-->
-<!--                </div>-->
-<!--              </form>-->
-<!--            </div>-->
-<!--            <div class="modal-footer">-->
-<!--              <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-<!--              <button *ngIf="showAdd" type="button" class="btn btn-primary" (click)="postSong()">Add</button>-->
-<!--              <button *ngIf="showUpdate" type="button" class="btn btn-primary" (click)="updateSongDetails()">Update-->
-<!--              </button>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
 

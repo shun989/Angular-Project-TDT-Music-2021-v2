@@ -4,43 +4,93 @@
   </div>
   <div class="card-body">
     <div class="form-group col-12">
+<<<<<<< HEAD
       <form  class="row g-3" *ngIf="formCreate" [formGroup]="formCreate" (ngSubmit)="onSubmit()">
         <div class="col-12">
           <label class="form-label">Image</label>
           <input type="text" class="form-control" formControlName="image" placeholder="http://...">
+=======
+      <form [formGroup]="formCreate" class="row g-3" (ngSubmit)="onSubmit()">
+        <div class="col-12">
+          <label class="form-label">Image</label>
+          <input type="text" class="form-control" name="image">
+>>>>>>> 4a9cb30f906da66d807bb13fc2025c9bc38fa891
         </div>
+
         <div class="col-md-6">
+<<<<<<< HEAD
           <label class="form-label" for="customFile">Select file</label>
           <input type="file" class="form-control" id="customFile" name="myFile" formControlName="mp3" (change)="onFileSelect($event)"/>
+=======
+          <label class="form-label" for="customFile">Select music file</label>
+          <input type="file" class="form-control" id="customFile" name="mp3" (change)="onFileSelect($event)"/>
+>>>>>>> 4a9cb30f906da66d807bb13fc2025c9bc38fa891
         </div>
+
         <div class="col-md-6">
-          <label for="inputPassword4" class="form-label">Song Name</label>
-          <input type="text" class="form-control" id="inputPassword4" formControlName="title">
+          <label class="form-label">Song Name</label>
+          <input type="text" class="form-control" name="title">
         </div>
+
         <div class="col-md-6">
+<<<<<<< HEAD
           <label class="form-label">Artist</label>
           <input type="text" class="form-control" formControlName="artist">
+=======
+          <label class="form-label">Listens</label>
+          <input type="number" class="form-control" name="listens">
+>>>>>>> 4a9cb30f906da66d807bb13fc2025c9bc38fa891
         </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Artist</label>
+          <input type="text" class="form-control" name="artist">
+        </div>
+
         <div class="col-md-6">
           <label class="form-label">Singer</label>
+<<<<<<< HEAD
           <select class="form-select form-control" formControlName="singer_id" *ngFor="let singer of singers">
             <option value="{{singer.id}}">{{singer.name}}</option>
           </select>
+=======
+          <input type="number" list="singer_id" class="form-control" name="singer_id" placeholder="Choose...">
+          <datalist id="singer_id"  >
+            <option *ngFor="let singer of singerData" value="{{singer.id}}" hidden>{{singer.name}}</option>
+          </datalist>
+>>>>>>> 4a9cb30f906da66d807bb13fc2025c9bc38fa891
         </div>
+
         <div class="col-md-6">
-          <label class="form-label">Genre</label>
-          <input type="text"  class="form-control" formControlName="genre">
+<<<<<<< HEAD
+=======
+          <label class="form-label">Post User</label>
+          <input *ngIf="user" type="number" class="form-control" name="user_id" value="{{user.id}}" readonly>
         </div>
+
+        <div class="col-md-6">
+>>>>>>> 4a9cb30f906da66d807bb13fc2025c9bc38fa891
+          <label class="form-label">Genre</label>
+          <input type="text" list="genre" class="form-control" name="genre" placeholder="Choose...">
+          <datalist id="genre">
+            <option *ngFor="let song of songData">{{song.genre}}</option>
+          </datalist>
+        </div>
+
         <div class="col-md-6">
           <label class="form-label">Album</label>
-          <input type="text" class="form-control"  formControlName="album">
+          <input type="text" list="album" class="form-control" name="album" placeholder="Choose...">
+          <datalist id="album">
+            <option *ngFor="let song of songData">{{song.album}}</option>
+          </datalist>
         </div>
+
         <div class="col-12 mb-3">
           <label class="form-label">Description</label>
-          <textarea rows="3" type="text" class="col-12" formControlName="description"></textarea>
+          <textarea rows="3" type="text" class="col-12" name="description"></textarea>
         </div>
         <div class="col-12 btn-edit">
-          <button routerLink="../" type="button" id="cancel" class="btn btn-info" data-bs-dismiss="modal">Close</button>
+          <button routerLink="../song" type="button" id="cancel" class="btn btn-info" data-bs-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-success mx-5">Add</button>
         </div>
       </form>
