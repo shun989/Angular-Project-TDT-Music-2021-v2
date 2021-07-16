@@ -12,9 +12,15 @@ import {UpdateComponent} from "./component/song/update/update.component";
 
 const routes: Routes = [
   {
-    path: '',
-    component: HomeComponent
+    path: 'Home',
+    children: [
+      {
+        path: '',
+        component: HomeComponent
+      }
+    ]
   },
+
   {
     path: 'album',
     component: AlbumComponent
@@ -28,10 +34,10 @@ const routes: Routes = [
     component: GenreComponent
   },
   {
-    path: 'song',
+    path: 'user',
     children: [
       {
-        path: '',
+        path: 'song',
         component: SongComponent
       },
       {

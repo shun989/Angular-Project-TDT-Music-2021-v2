@@ -1,0 +1,13 @@
+.dropdown-menu{
+  margin-top: 10px;
+  width: 115px;
+  text-align: center;
+  background-color: #50bbd5;
+}
+
+.dropdown-item{
+  color: white;
+}
+.dropdown-item:hover{
+  color: #2d2a2a;
+}

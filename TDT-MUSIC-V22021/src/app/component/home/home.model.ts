@@ -1,12 +1,13 @@
 export class HomeModel{
   id: number = 0;
-  song_name: string = '';
+  title: string = '';
   description: string = '';
-  filename: string = '';
+  mp3: any;
   image: string = '';
-  musician: string = '';
-  genre: string = '';
-  album: string = '';
+  artist: string = '';
   singer_id: number = 0;
   user_id: number = 0;
+  genre: string = '';
+  album: string = '';
+  listens !: number;
 }

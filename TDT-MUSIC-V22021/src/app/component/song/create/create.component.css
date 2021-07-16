@@ -3,9 +3,13 @@ label{
 }
 
 .card{
+  background-color: #51bed9;
+}
+
+.card-header{
   font-size: 20px;
   color: white;
-  padding: 5px 0;
+  margin: 5px 0;
   background-color: #51bed9;
 }
 
