@@ -9,97 +9,57 @@ import {SongService} from "../../service/song.service";
   styleUrls: ['./song.component.css']
 })
 export class SongComponent implements OnInit {
-  formValue !: FormGroup;
+  formGroup !: FormGroup;
   songModelObj: SongModel = new SongModel();
   songData !: any;
 
   constructor(private formBuilder: FormBuilder,
-              private songService: SongService) { }
+              private songService: SongService) {}
 
   ngOnInit(): void {
-    this.formValue = this.formBuilder.group({
-      song_name: [''],
+    this.formGroup = this.formBuilder.group({
+      title: [''],
       description: [''],
-      filename: [''],
+      mp3: [''],
       image: [''],
-      musician: [''],
+      artist: [''],
       genre: [''],
       album: [''],
       singer_id: [''],
-      user_id: ['']
+      user_id: [''],
+      listens: ['']
     })
     this.getSongData();
   }
 
-  getSongData():void {
+  getSongData(): void {
     this.songService.getAllSongs().subscribe(res => {
       this.songData = res;
     })
   }
 
-  // postSong():void {
-  //   this.songModelObj.song_name = this.formValue.value.song_name;
-  //   this.songModelObj.description = this.formValue.value.description;
-  //   this.songModelObj.filename = this.formValue.value.filename;
-  //   this.songModelObj.image = this.formValue.value.image;
-  //   this.songModelObj.musician = this.formValue.value.musician;
-  //   this.songModelObj.genre = this.formValue.value.genre;
-  //   this.songModelObj.album = this.formValue.value.album;
-  //   this.songModelObj.singer_id = this.formValue.value.singer_id;
-  //   this.songModelObj.user_id = this.formValue.value.user_id;
-  //
-  //   this.songService.postSong(this.songModelObj).subscribe(res =>{
-  //     alert("Song Add Success.");
-  //       let ref = document.getElementById('cancel')
-  //       ref?.click();
-  //     this.formValue.reset();
-  //     this.getSongData();
-  //   },
-  //     error => {
-  //     alert("Something Went Wrong!");
-  //     })
-  // }
 
-  deleteSong(item: any) {
-    if (confirm("Are you Sure?")){
-      this.songData = this.songData.filter((i: any) => i !== item);
-      this.songService.deleteSong(item.id).subscribe( res => {
+  deleteSong(song: any) {
+    if (confirm("Are you Sure?")) {
+      this.songData = this.songData.filter((i: any) => i !== song);
+      this.songService.deleteSong(song.id).subscribe(res => {
         this.getSongData();
       })
     }
   }
 
-  onUpdate(item: any) {
-    this.songModelObj.id = item.id;
-    this.formValue.controls['song_name'].setValue(item.song_name);
-    this.formValue.controls['description'].setValue(item.description);
-    this.formValue.controls['filename'].setValue(item.filename);
-    this.formValue.controls['image'].setValue(item.image);
-    this.formValue.controls['musician'].setValue(item.musician);
-    this.formValue.controls['genre'].setValue(item.genre);
-    this.formValue.controls['album'].setValue(item.album);
-    this.formValue.controls['singer_id'].setValue(item.singer_id);
-    this.formValue.controls['user_id'].setValue(item.user_id);
+  onUpdate(song: any) {
+    this.songModelObj.id = song.id;
+    this.formGroup.controls['title'].setValue(song.title);
+    this.formGroup.controls['description'].setValue(song.description);
+    this.formGroup.controls['mp3'].setValue(song.mp3);
+    this.formGroup.controls['image'].setValue(song.image);
+    this.formGroup.controls['artist'].setValue(song.artist);
+    this.formGroup.controls['genre'].setValue(song.genre);
+    this.formGroup.controls['album'].setValue(song.album);
+    this.formGroup.controls['singer_id'].setValue(song.singer_id);
+    this.formGroup.controls['user_id'].setValue(song.user_id);
+    this.formGroup.controls['listens'].setValue(song.listens);
   }
 
-  // updateSongDetails() {
-  //   this.songModelObj.song_name = this.formValue.value.song_name;
-  //   this.songModelObj.description = this.formValue.value.description;
-  //   this.songModelObj.filename = this.formValue.value.filename;
-  //   this.songModelObj.image = this.formValue.value.image;
-  //   this.songModelObj.musician = this.formValue.value.musician;
-  //   this.songModelObj.genre = this.formValue.value.genre;
-  //   this.songModelObj.album = this.formValue.value.album;
-  //   this.songModelObj.singer_id = this.formValue.value.singer_id;
-  //   this.songModelObj.user_id = this.formValue.value.user_id;
-  //
-  //   this.songService.updateSong(this.songModelObj, this.songModelObj.id)
-  //     .subscribe(res =>{
-  //       alert("Update Successfully.");
-  //       let ref = document.getElementById('cancel')
-  //       ref?.click();
-  //       this.formValue.reset();
-  //       this.getSongData();
-  //     })
-  // }
 }

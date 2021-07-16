@@ -1,17 +1,6 @@
-import {
-  AfterContentInit,
-  AfterViewChecked,
-  AfterViewInit,
-  Component,
-  DoCheck,
-  OnChanges,
-  OnInit,
-  SimpleChanges, ViewChild
-} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder} from "@angular/forms";
 import {HomeService} from "../../service/home.service";
-import {AuthService} from "../../service/auth.service";
-import {LoginComponent} from "../../auth/login/login.component";
 
 @Component({
   selector: 'app-home',
