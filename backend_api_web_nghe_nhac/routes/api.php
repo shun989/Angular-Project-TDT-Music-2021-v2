@@ -61,5 +61,3 @@ Route::prefix('singers')->group(function () {
     Route::get('/{singerId}/show', [SingerController::class, 'show'])->name('singers.show');
 });
 
-
-

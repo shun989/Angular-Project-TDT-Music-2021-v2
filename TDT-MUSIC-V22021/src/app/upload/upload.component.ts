@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import Swal from 'sweetalert2';
-
 
 @Component({
   selector: 'app-upload',
@@ -29,13 +27,7 @@ export class UploadComponent implements OnInit {
     this.http.post('http://localhost:8000/api/upload-file', myFormData, {
       headers: headers
     }).subscribe(res => {
-
-      Swal.fire({
-        title: 'Hurray!!',
-        // @ts-ignore
-        text:  res['message'],
-        icon: 'success'
-      });
+      console.log(res)
     });
   }
 

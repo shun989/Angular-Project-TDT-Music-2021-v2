@@ -38,8 +38,20 @@ class SongController extends Controller
 
     public function store(Request $request)
     {
-        $datasongs = $this->songService->create($request->all());
-        return response()->json($datasongs['songs'], $datasongs['statusCode']);
+        $file = $request->file('mp3');
+        $fileName = date('His') . '-' . $file->getClientOriginalName();
+        $data = $request->all();
+        $data['mp3'] = $fileName;
+
+        if ($request->hasFile('mp3')) {
+            $extension = $file->getClientOriginalExtension();
+            $audio = $fileName;
+            $file->move(public_path('music'), $audio);
+            $datasongs = $this->songService->create($data);
+            return response()->json(['dataSong' => $datasongs, 'message' => 'Successfully']);
+        }else{
+            return response()->json(['message'=> 'Select file first']);
+        }
     }
 
     public function update(Request $request, $id)
@@ -57,13 +69,18 @@ class SongController extends Controller
 
     public function songsOfSinger($singer_id)
     {
-        $songs = Song::all()->where('singer_id','=',$singer_id);
-        return response()->json($songs, 200);
-    }
-    public function songsOfUser($user_id)
-    {
-        $songs = Song::all()->where('user_id','=',$user_id);
+        $songs = Song::all()->where('singer_id', '=', $singer_id);
         return response()->json($songs, 200);
     }
 
+    public function songsOfUser($user_id)
+    {
+        $songs = Song::all()->where('user_id', '=', $user_id);
+        return response()->json($songs, 200);
+    }
+
+    public function view()
+    {
+        return view('welcome');
+    }
 }

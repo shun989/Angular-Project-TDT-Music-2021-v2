@@ -5,7 +5,6 @@
   <div class="card-body">
     <div class="form-group col-12">
       <form [formGroup]="formCreate" class="row g-3" (ngSubmit)="onSubmit()">
-
         <div class="col-12">
           <label class="form-label">Image</label>
           <input type="text" class="form-control" name="image">
@@ -64,6 +63,7 @@
           <label class="form-label">Description</label>
           <textarea rows="3" type="text" class="col-12" name="description"></textarea>
         </div>
+        <input type="text" value="0" hidden>
 
         <div class="col-12 btn-edit">
           <button routerLink="../song" type="button" id="cancel" class="btn btn-info" data-bs-dismiss="modal">Close</button>
@@ -73,79 +73,3 @@
     </div>
   </div>
 </div>
-
-<!--<div class="card">-->
-<!--  <div class="card-header">-->
-<!--    Add New Song-->
-<!--  </div>-->
-<!--  <div class="card-body">-->
-<!--    <div class="form-group col-12">-->
-<!--      <form [formGroup]="formCreate" class="row g-3" (ngSubmit)="postSong()">-->
-
-<!--        <div class="col-12">-->
-<!--          <label class="form-label">Image</label>-->
-<!--          <input type="text" class="form-control" formControlName="image">-->
-<!--        </div>-->
-
-<!--        <div class="col-md-6">-->
-<!--          <label class="form-label" for="customFile">Select music file</label>-->
-<!--          <input type="file" class="form-control" id="customFile" formControlName="mp3" (change)="onFileSelect($event)"/>-->
-<!--        </div>-->
-
-<!--        <div class="col-md-6">-->
-<!--          <label class="form-label">Song Name</label>-->
-<!--          <input type="text" class="form-control" formControlName="title">-->
-<!--        </div>-->
-
-<!--        <div class="col-md-6">-->
-<!--          <label class="form-label">Listens</label>-->
-<!--          <input type="number" class="form-control" formControlName="listens">-->
-<!--        </div>-->
-
-<!--        <div class="col-md-6">-->
-<!--          <label class="form-label">Artist</label>-->
-<!--          <input type="text" class="form-control" formControlName="artist">-->
-<!--        </div>-->
-
-<!--        <div class="col-md-6">-->
-<!--          <label class="form-label">Singer</label>-->
-<!--          <input type="number" list="singer_id" class="form-control" formControlName="singer_id" placeholder="Choose...">-->
-<!--          <datalist id="singer_id">-->
-<!--            <option *ngFor="let singer of singerData" value="{{singer.id}}">{{singer.name}}-->
-<!--          </datalist>-->
-<!--        </div>-->
-
-<!--        <div class="col-md-6">-->
-<!--          <label class="form-label">Poster</label>-->
-<!--          <input *ngIf="user" type="number" class="form-control" formControlName="user_id" value="{{user.id}}" readonly>-->
-<!--        </div>-->
-
-<!--        <div class="col-md-6">-->
-<!--          <label class="form-label">Genre</label>-->
-<!--          <input type="text" list="genre" class="form-control" formControlName="genre" placeholder="Choose...">-->
-<!--          <datalist id="genre">-->
-<!--            <option *ngFor="let song of songData">{{song.genre}}</option>-->
-<!--          </datalist>-->
-<!--        </div>-->
-
-<!--        <div class="col-md-6">-->
-<!--          <label class="form-label">Album</label>-->
-<!--          <input type="text" list="album" class="form-control" formControlName="album" placeholder="Choose...">-->
-<!--          <datalist id="album">-->
-<!--            <option *ngFor="let song of songData">{{song.album}}</option>-->
-<!--          </datalist>-->
-<!--        </div>-->
-
-<!--        <div class="col-12 mb-3">-->
-<!--          <label class="form-label">Description</label>-->
-<!--          <textarea rows="3" type="text" class="col-12" formControlName="description"></textarea>-->
-<!--        </div>-->
-
-<!--        <div class="col-12 btn-edit">-->
-<!--          <button routerLink="../song" type="button" id="cancel" class="btn btn-info" data-bs-dismiss="modal">Close</button>-->
-<!--          <button type="submit" class="btn btn-success mx-5">Add</button>-->
-<!--        </div>-->
-<!--      </form>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->

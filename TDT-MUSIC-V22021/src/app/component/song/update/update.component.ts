@@ -78,6 +78,7 @@ export class UpdateComponent implements OnInit {
   }
 
 
+
   updateSong() {
   //   this.songModelObj.title = this.formUpdate.value.title;
   //   this.songModelObj.description = this.formUpdate.value.description;
@@ -89,6 +90,7 @@ export class UpdateComponent implements OnInit {
   //   this.songModelObj.singer_id = this.formUpdate.value.singer_id;
   //   this.songModelObj.user_id = this.formUpdate.value.user_id;
   //   this.songModelObj.listens = this.formUpdate.value.listens;
+
   //
   //   this.songService.updateSong(this.songModelObj, this.songModelObj.id)
   //     .subscribe(res =>{
@@ -99,5 +101,6 @@ export class UpdateComponent implements OnInit {
   //       this.getSongData();
   //     })
   }
+
 
 }

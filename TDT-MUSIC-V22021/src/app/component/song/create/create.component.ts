@@ -73,9 +73,9 @@ export class CreateComponent implements OnInit {
     })
   }
 
-  fileEvent(e: any) {
-    this.fileData = e.target.files[0];
-  }
+  // fileEvent(e: any) {
+  //   this.fileData = e.target.files[0];
+  // }
 
   onFileSelect(event: any) {
     if (event != null && event.target.files.length > 0) {
@@ -87,7 +87,7 @@ export class CreateComponent implements OnInit {
 
     const formData = new FormData();
     const headers = new HttpHeaders();
-    formData.append('mp3',this.mp3, this.formCreate.value.mp3);
+    formData.append('mp3', this.mp3, this.formCreate.value.mp3);
     formData.append('title', this.formCreate.value.title);
     formData.append('description', this.formCreate.value.description);
     formData.append('image', this.formCreate.value.image);
@@ -100,22 +100,39 @@ export class CreateComponent implements OnInit {
     // let token =localStorage.getItem('token');
     // let headers_object = new HttpHeaders().set('Authorization', 'Bearer' + token);
     // let httpOptions = {headers: headers_object};
-    this.http.post<any>('http://localhost:8000/api/upload', formData,{
+    this.http.post<any>('http://localhost:8000/api/upload', formData, {
       headers: headers
-    }).subscribe(res=>{
-        console.log(res);
-        alert("Add Success.");
-        let ref = document.getElementById('cancel')
-        ref?.click();
-        this.formCreate.reset();
-        this.getSongData();
-      },
-      error => {
-        alert("Something Went Wrong!");
+    }).subscribe(res => {
+      console.log(res);
+      alert("Add Success.");
     })
-      // (res) => console.log(res),
-      // (err) => console.log(err)
   }
+  //
+  // postSong():void {
+  //   this.songModelObj.title = this.formCreate.value.title;
+  //   this.songModelObj.description = this.formCreate.value.description;
+  //   this.songModelObj.mp3 = this.formCreate.value.mp3;
+  //   this.songModelObj.image = this.formCreate.value.image;
+  //   this.songModelObj.musician = this.formCreate.value.musician;
+  //   this.songModelObj.genre = this.formCreate.value.genre;
+  //   this.songModelObj.album = this.formCreate.value.album;
+  //   this.songModelObj.singer_id = this.formCreate.value.singer_id;
+  //   this.songModelObj.user_id = this.formCreate.value.user_id;
+  //
+  //   this.songService.postSong(this.songModelObj).subscribe(res =>{
+  //       console.log(res)
+  //       let ref = document.getElementById('cancel')
+  //       ref?.click();
+  //       this.formCreate.reset();
+  //       this.getSongData();
+  //     },
+  //     error => {
+  //       alert("Something Went Wrong!");
+  //   })
+  //     // (res) => console.log(res),
+  //     // (err) => console.log(err)
+  //
+  // }
 
   // postSong(): void {
   //   this.songModelObj.title = this.formCreate.value.title;
@@ -142,26 +159,24 @@ export class CreateComponent implements OnInit {
   //
   // }
 
-  onSubmitForm() {
-
-    var myFormData = new FormData();
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'multipart/form-data');
-    headers.append('Accept', 'application/json');
-    myFormData.append('music', this.fileData);
-    /* Image Post Request */
-    this.http.post('http://localhost:8000/api/upload-file', myFormData, {
-      headers: headers
-    }).subscribe(res => {
-
-      // Swal.fire({
-      //   title: 'Hurray!!',
-      //   // @ts-ignore
-      //   text:  res['message'],
-      //   icon: 'success'
-      // });
-    });
-  }
-
-
+  // onSubmitForm() {
+  //
+  //   var myFormData = new FormData();
+  //   const headers = new HttpHeaders();
+  //   headers.append('Content-Type', 'multipart/form-data');
+  //   headers.append('Accept', 'application/json');
+  //   myFormData.append('music', this.fileData);
+  //   /* Image Post Request */
+  //   this.http.post('http://localhost:8000/api/upload-file', myFormData, {
+  //     headers: headers
+  //   }).subscribe(res => {
+  //
+  //     // Swal.fire({
+  //     //   title: 'Hurray!!',
+  //     //   // @ts-ignore
+  //     //   text:  res['message'],
+  //     //   icon: 'success'
+  //     // });
+  //   });
+  // }
 }

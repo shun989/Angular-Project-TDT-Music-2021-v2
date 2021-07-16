@@ -8,6 +8,10 @@ $(function () {
       method: "GET",
       success: function (res) {
         dataSongs = res
+        for (let i = 0; i < dataSongs.length; i++) {
+          dataSongs[i]['mp3'] = "http://127.0.0.1:8000/music/" + dataSongs[i]['mp3'];
+        }
+        console.log(dataSongs)
         var myPlaylist = new jPlayerPlaylist({
           jPlayer: "#jquery_jplayer_1",
           cssSelectorAncestor: "#jp_container_1"
@@ -119,8 +123,5 @@ $(function () {
         });
       }
     })
-    console.log(dataSongs)
-
-
   }
 });

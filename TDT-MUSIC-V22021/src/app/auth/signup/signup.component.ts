@@ -67,13 +67,14 @@ export class SignupComponent implements OnInit {
     this.userModelObj.phone = this.formRegister.value.phone;
 
     this.authService.createUser(this.userModelObj).subscribe(res =>{
-       this.message = 'Register Success'
+       this.message = res.message
+        console.log(this.message)
         let ref = document.getElementById('cancel')
         ref?.click();
         this.formRegister.reset();
       },
       error => {
-        this.message = 'Something Went Wrong!'
+        this.message = error.error
       })
   }
 
